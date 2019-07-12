@@ -3,9 +3,23 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import QuickReplies from './QuickReplies';
 
-export const quickReplies = {
-    text: 'Book a room',
-};
+export const quickReply = [
+    {
+        text: 'Choice 1'
+    }
+];
+
+export const quickReplies = [
+    {
+        text: 'Choice 1'
+    },
+    {
+        text: 'Choice 2'
+    },
+    {
+        text: 'Choice 3'
+    }
+];
 
 // Technically, a story is a function that returns something that can be rendered to screen.
 
@@ -14,4 +28,5 @@ export const quickReplies = {
 //To define our stories, we call add() once for each of our test states to generate a story.
 
 storiesOf('QuickReplies', module)
-    .add('with text', () => <QuickReplies quickReplies={quickReplies}></QuickReplies>)
+    .add('One option', () => <QuickReplies quickReplies={quickReply}></QuickReplies>)
+    .add('Multiple option', () => <QuickReplies quickReplies={quickReplies}></QuickReplies>)
