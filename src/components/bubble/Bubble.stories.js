@@ -21,4 +21,6 @@ export const botBubble = {
 
 storiesOf('Bubble', module)
     .add('with bot text', () => <Bubble bubble={userBubble}></Bubble>)
-    .add('with user text', () => <Bubble bubble={botBubble}></Bubble>);
+    .add('with user text', () => <Bubble bubble={botBubble}></Bubble>, {
+        notes: "Message from chatbot"
+    });
