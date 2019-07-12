@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Bubble from './components/bubble/Bubble';
+import 'bootstrap/dist/css/bootstrap.css';
+
+export const userBubble = {
+  text: 'I want to book a room for tomorrow',
+  isUser: true
+};
+
+export const botBubble = {
+  text: 'Good day! What can I do for you today?',
+  isUser: false
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="container">
+      <Bubble bubble={botBubble}></Bubble>
+      <Bubble bubble={userBubble}></Bubble>
+    </main>
   );
 }
 
