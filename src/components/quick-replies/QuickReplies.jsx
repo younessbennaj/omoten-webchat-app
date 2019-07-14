@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import defaultTheme from '../../theme';
 import QuickRepliesContainer from './QuickRepliesContainer';
 import QuickRepliesList from './QuickRepliesList';
 import QuickReply from './QuickReply';
