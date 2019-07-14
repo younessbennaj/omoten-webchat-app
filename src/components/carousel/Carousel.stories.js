@@ -42,18 +42,6 @@ export const carousel = [
     }
 ];
 
-// export const quickReplies = [
-//     {
-//         text: 'Choice 1'
-//     },
-//     {
-//         text: 'Choice 2'
-//     },
-//     {
-//         text: 'Choice 3'
-//     }
-// ];
-
 // Technically, a story is a function that returns something that can be rendered to screen.
 
 // We first call the storiesOf() function to register the component.
