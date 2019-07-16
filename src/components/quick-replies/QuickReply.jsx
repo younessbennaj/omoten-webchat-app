@@ -4,7 +4,7 @@ import defaultTheme from '../../theme';
 const QuickReply = styled.li`
     cursor: pointer;
     display: inline-block;
-    margin: 2px;
+    margin: 0px;
 `;
 
 export default QuickReply;

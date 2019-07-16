@@ -9,7 +9,7 @@ export const userBubble = {
 };
 
 export const botBubble = {
-    text: 'Good day! What can I do for you today?',
+    text: 'Good day!',
     isUser: false
 };
 

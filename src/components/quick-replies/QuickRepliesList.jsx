@@ -3,8 +3,8 @@ import defaultTheme from '../../theme';
 
 const QuickRepliesList = styled.ul`
     list-style-type: none;
-    padding: 0 6px;
-    margin: 2px 0 12px 0;
+    padding: 0 0px;
+    margin: 2px 0 0 0;
 `;
 
 export default QuickRepliesList;

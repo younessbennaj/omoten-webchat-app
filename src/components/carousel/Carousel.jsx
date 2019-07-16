@@ -26,7 +26,7 @@ const QuickReplies = ({ carousel }) => {
     }
 
     return (
-        <SliderContainer className="mb-3">
+        <SliderContainer>
             <Arrow className='position-absolute' direction='left'>
                 <button onClick={previousIndex} className="btn btn-primary" disabled={currentIndex === 0}>
                     <FaArrowLeft />
