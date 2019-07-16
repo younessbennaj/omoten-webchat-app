@@ -4,10 +4,15 @@ import styled from 'styled-components';
 
 const Avatar = styled.img`
         padding: 6px;
-        height: 46px;
-        width: 46px;
+        height: 30px;
+        width: 30px;
     `;
 
+const InfoLine = styled.div`
+    margin: 0 12px;
+    flex: 0 1 auto;
+    font-size: 12px;
+`;
 const MessageContainer = styled.div`
 `;
 
@@ -19,6 +24,11 @@ const Message = ({ message }) => {
                 <Avatar className="rounded-circle shadow-sm ml-2" src="https://api.adorable.io/avatars/46/abott@adorable.png" />
             </div>
             <MessageContainer className="d-flex flex-column">
+                <InfoLine className="d-flex">
+                    <div>
+                        Hotel Digital Assistant
+                    </div>
+                </InfoLine>
                 {message.map(item => {
                     return <MessageItem item={item}></MessageItem>
                 })}
