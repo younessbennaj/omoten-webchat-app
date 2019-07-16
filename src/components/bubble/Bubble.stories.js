@@ -13,6 +13,17 @@ export const botBubble = {
     isUser: false
 };
 
+export const testBubble1 = {
+    text: 'Thats cool',
+    isUser: false
+};
+
+export const testBubble2 = {
+    text: 'Would you be interested in downloading our annual report, Connect Better in 2019, on best practices from our customers and industry experts?',
+    isUser: false
+};
+
+
 // Technically, a story is a function that returns something that can be rendered to screen.
 
 // We first call the storiesOf() function to register the component.
