@@ -8,8 +8,8 @@ import Message from '../message/Message';
 
 export const sampleMessage = [
     textMessage,
-    quickRepliesMessage,
-    carouselMessage
+    textMessage,
+    textMessage
 ];
 
 storiesOf('Message', module)

@@ -9,7 +9,7 @@ const CardContainer = styled.div`
 
 const Card = ({ card: { title, text, image, buttons } }) => {
     return (
-        <CardContainer className="card shadow-sm mx-3">
+        <CardContainer className="card shadow-sm mr-1">
             <img src={image} className="card-img-top" alt="..."></img>
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>

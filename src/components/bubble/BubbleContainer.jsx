@@ -3,9 +3,9 @@ import defaultTheme from '../../theme';
 
 const BubbleContainer = styled.div`
     border-radius: ${props => {
-        return props.isUser ? '18px 18px 0px 18px' : '18px 18px 18px 0px';
+        return props.isUser ? '20px 20px 0px 20px' : '20px 20px 20px 0px';
     }};
-    font-size: 14px;
+    padding: 8px 12px;
     color: ${props => (props.isUser ? props.theme.userFontColor : props.theme.botFontColor)};
     background: ${props => (props.isUser ? props.theme.userBubbleColor : props.theme.botBubbleColor)};
 `;
