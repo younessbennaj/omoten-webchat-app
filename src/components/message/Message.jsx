@@ -19,20 +19,31 @@ const MessageContainer = styled.div`
 
 const Message = ({ message }) => {
     return (
-        <div className="d-flex flex-row">
-            <div className="d-flex align-items-end mr-2">
-                <Avatar className="rounded-circle shadow-sm ml-2" src="https://api.adorable.io/avatars/46/abott@adorable.png" />
-            </div>
-            <MessageContainer className="d-flex flex-column">
-                <InfoLine className="d-flex">
-                    <div>
-                        Hotel Digital Assistant
+        <div>
+            <div className="d-flex flex-row">
+                <div className="d-flex align-items-end mr-2">
+                    <Avatar className="rounded-circle shadow-sm ml-2" src="https://api.adorable.io/avatars/46/abott@adorable.png" />
+                </div>
+                <MessageContainer className="d-flex flex-column">
+                    <InfoLine className="d-flex">
+                        <div>
+                            Hotel Digital Assistant
                     </div>
-                </InfoLine>
+                    </InfoLine>
+                    {message.map(item => {
+                        if (item.type !== 'quickReplies') {
+                            return <MessageItem item={item}></MessageItem>
+                        }
+                    })}
+                </MessageContainer>
+            </div>
+            <div>
                 {message.map(item => {
-                    return <MessageItem item={item}></MessageItem>
+                    if (item.type === 'quickReplies') {
+                        return <MessageItem item={item}></MessageItem>
+                    }
                 })}
-            </MessageContainer>
+            </div>
         </div>
     )
 }

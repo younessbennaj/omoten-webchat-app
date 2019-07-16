@@ -9,7 +9,7 @@ import QuickReplyContent from './QuickReplyContent';
 const QuickReplies = ({ quickReplies }) => {
     return (
         <QuickRepliesContainer>
-            <QuickRepliesList>
+            <QuickRepliesList className="d-flex justify-content-end">
                 {quickReplies.map((quickReply) => {
                     return (
                         <QuickReply>

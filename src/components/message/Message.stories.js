@@ -8,7 +8,8 @@ import Message from '../message/Message';
 
 export const sampleMessage = [
     testMessage1,
-    testMessage2
+    testMessage2,
+    quickRepliesMessage
 ];
 
 storiesOf('Message', module)
