@@ -14,7 +14,7 @@ const QuickReplies = ({ quickReplies }) => {
                     return (
                         <QuickReply>
                             <QuickReplyContent>
-                                {quickReply.text}
+                                {quickReply.title}
                             </QuickReplyContent>
                         </QuickReply>
                     )

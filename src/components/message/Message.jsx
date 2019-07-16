@@ -15,12 +15,16 @@ const InfoLine = styled.div`
 `;
 const MessageContainer = styled.div`
 `;
+const MessageGroupe = styled.div`
+`
+const MessageGroupeContainer = styled.div`
+`
 
 
 const Message = ({ message }) => {
     return (
-        <div>
-            <div className="d-flex flex-row">
+        <MessageGroupeContainer>
+            <MessageGroupe className="d-flex flex-row">
                 <div className="d-flex align-items-end mr-2">
                     <Avatar className="rounded-circle shadow-sm ml-2" src="https://api.adorable.io/avatars/46/abott@adorable.png" />
                 </div>
@@ -28,7 +32,7 @@ const Message = ({ message }) => {
                     <InfoLine className="d-flex">
                         <div>
                             Hotel Digital Assistant
-                    </div>
+                        </div>
                     </InfoLine>
                     {message.map(item => {
                         if (item.type !== 'quickReplies') {
@@ -36,7 +40,7 @@ const Message = ({ message }) => {
                         }
                     })}
                 </MessageContainer>
-            </div>
+            </MessageGroupe>
             <div>
                 {message.map(item => {
                     if (item.type === 'quickReplies') {
@@ -44,7 +48,7 @@ const Message = ({ message }) => {
                     }
                 })}
             </div>
-        </div>
+        </MessageGroupeContainer>
     )
 }
 
