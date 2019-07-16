@@ -3,17 +3,14 @@ import styled from 'styled-components';
 import BubbleContainer from './BubbleContainer';
 
 const Paragraph = styled.p`
+    margin: 0;
     display: block;
     font-size: 16px;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
 `;
 
 const Bubble = ({ bubble: { text, isUser } }) => {
     return (
-        <BubbleContainer isUser={isUser} className="shadow-sm d-block">
+        <BubbleContainer isUser={isUser} className="shadow-sm d-inline-block">
             <Paragraph>
                 {text}
             </Paragraph>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { botBubble } from '../bubble/Bubble.stories';
+import { botBubble, testBubble1, testBubble2 } from '../bubble/Bubble.stories';
 import { quickReplies } from '../quick-replies/QuickReplies.stories';
 import { carousel } from '../carousel/Carousel.stories';
 import MessageItem from './MessageItem';
@@ -10,6 +10,18 @@ export const textMessage = {
     isUser: true,
     type: 'text',
     content: botBubble
+}
+
+export const testMessage1 = {
+    isUser: true,
+    type: 'text',
+    content: testBubble1
+}
+
+export const testMessage2 = {
+    isUser: true,
+    type: 'text',
+    content: testBubble2
 }
 
 export const quickRepliesMessage = {
