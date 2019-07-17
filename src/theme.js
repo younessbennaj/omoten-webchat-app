@@ -14,6 +14,11 @@ export const defaultTheme = {
     background: '#BDBDBD'
 }
 
+export const headerTheme = {
+    background: '#fff',
+    color: '#9A9A9A'
+}
+
 export const botTheme = {
     bubbleColor: '#f8f8f8',
     fontColor: '#000',
