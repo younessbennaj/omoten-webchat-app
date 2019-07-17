@@ -1,16 +1,18 @@
 import styled from 'styled-components';
-import defaultTheme from '../../theme';
 
 const BubbleContainer = styled.div`
     border-radius: 16px;
-
     padding: 8px 12px;
-    color: ${props => (props.isUser ? props.theme.userFontColor : props.theme.botFontColor)};
-    background: ${props => (props.isUser ? props.theme.userBubbleColor : props.theme.botBubbleColor)};
+    color: ${({ theme }) => theme.fontColor};
+    background: ${({ theme }) => theme.bubbleColor};
 `;
 
-BubbleContainer.defaultProps = {
-    theme: defaultTheme
-};
+// const BubbleContainer = styled.div`
+//     border-radius: 16px;
+
+//     padding: 8px 12px;
+//     color: ${props => (props.isUser ? props.theme.userFontColor : props.theme.botFontColor)};
+//     background: ${props => (props.isUser ? props.theme.userBubbleColor : props.theme.botBubbleColor)};
+// `;
 
 export default BubbleContainer;

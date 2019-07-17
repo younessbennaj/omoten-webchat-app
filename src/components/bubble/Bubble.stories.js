@@ -4,23 +4,20 @@ import { action } from '@storybook/addon-actions';
 import Bubble from './Bubble';
 
 export const userBubble = {
-    text: 'I want to book a room for tomorrow',
+    content: 'I want to book a room for tomorrow',
     isUser: true
 };
 
 export const botBubble = {
-    text: 'Good day!',
-    isUser: false
+    content: 'Good day!'
 };
 
 export const testBubble1 = {
-    text: 'Thats cool',
-    isUser: false
+    content: 'Thats cool'
 };
 
 export const testBubble2 = {
-    text: 'Would you be interested in downloading our annual report, Connect Better in 2019, on best practices from our customers and industry experts?',
-    isUser: false
+    content: 'Would you be interested in downloading our annual report, Connect Better in 2019, on best practices from our customers and industry experts?'
 };
 
 

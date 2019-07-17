@@ -8,11 +8,11 @@ const Paragraph = styled.p`
     font-size: 16px;
 `;
 
-const Bubble = ({ bubble: { text, isUser } }) => {
+const Bubble = ({ bubble: { content, isUser } }) => {
     return (
         <BubbleContainer isUser={isUser} className="shadow-sm d-inline-block">
             <Paragraph>
-                {text}
+                {content}
             </Paragraph>
         </BubbleContainer>
     );

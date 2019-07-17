@@ -10,11 +10,11 @@ const QuickReplies = ({ quickReplies }) => {
     return (
         <QuickRepliesContainer>
             <QuickRepliesList className="d-flex justify-content-end">
-                {quickReplies.map((quickReply) => {
+                {quickReplies.map((quickReply, i) => {
                     return (
-                        <QuickReply>
+                        <QuickReply key={i}>
                             <QuickReplyContent>
-                                {quickReply.text}
+                                {quickReply.title}
                             </QuickReplyContent>
                         </QuickReply>
                     )
