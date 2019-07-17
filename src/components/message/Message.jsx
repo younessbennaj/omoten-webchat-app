@@ -16,11 +16,13 @@ const InfoLine = styled.div`
     font-size: 12px;
 `;
 const MessageContainer = styled.div`
-    padding: 8px 0;
 `;
+
 const MessageGroupe = styled.div`
+    padding-bottom: 8px
 `
 const MessageGroupeContainer = styled.div`
+    padding: 8px 0; 
 `
 
 

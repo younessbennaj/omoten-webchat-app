@@ -10,12 +10,20 @@
 //     userFontColor: '#4a4a4a'
 // };
 
+export const defaultTheme = {
+    background: '#BDBDBD'
+}
+
 export const botTheme = {
-    bubbleColor: '#2196F3',
-    fontColor: '#fff'
+    bubbleColor: '#f8f8f8',
+    fontColor: '#000',
+    quickRepliesBorder: '#2196F3',
+    quickRepliesColor: '#2196F3',
+    quickRepliesBackgroud: '#2196F3',
+    quickReplisInvertColor: '#fff'
 };
 
 export const userTheme = {
-    bubbleColor: '#fff',
-    fontColor: '#4a4a4a'
+    bubbleColor: '#2196F3',
+    fontColor: '#fff'
 };
