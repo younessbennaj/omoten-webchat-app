@@ -4,8 +4,9 @@ import { headerTheme } from '../../theme';
 import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../messenger-header/MessengerHeader';
 import MessengerInput from '../messenger-input/MessengerInput';
+import { messages } from '../message-list/MessageList.stories';
 
-const Messenger = ({ messages }) => {
+const Messenger = () => {
 
     const { messages: conversation, setMessages, bind } = useMessages(messages);
 
