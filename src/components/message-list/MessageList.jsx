@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Message from '../message/Message';
 
 const MessageList = ({ messages }) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { botBubble, testBubble1, testBubble2 } from '../bubble/Bubble.stories';
 import { quickReplies } from '../quick-replies/QuickReplies.stories';
 import { carousel } from '../carousel/Carousel.stories';

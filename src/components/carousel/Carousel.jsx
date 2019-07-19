@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import defaultTheme from '../../theme';
 import Card from '../card/Card';
 import CarouselContainer from './CarouselContainer';
 import SliderContainer from './SliderContainer';

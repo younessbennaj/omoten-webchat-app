@@ -19,7 +19,7 @@ const Card = ({ card: { title, text, image, buttons } }) => {
                 {buttons.map(button => {
                     return (
                         <li className="list-group-item text-center">
-                            <a href="#" className="text-center">{button.title}</a>
+                            <a href={"www.google.com"} className="text-center">{button.title}</a>
                         </li>
                     )
                 })}
