@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { userContent, botContent } from '../bubble/Bubble.stories';
-import { quickReplies } from '../quick-replies/QuickReplies.stories';
+import { quickRepliesContent } from '../quick-replies/QuickReplies.stories';
 import { carousel } from '../carousel/Carousel.stories';
 import MessageItem from './MessageItem';
 
@@ -17,9 +17,8 @@ export const botMessageContent = {
 }
 
 export const quickRepliesMessage = {
-    isUser: false,
     type: 'quickReplies',
-    content: quickReplies
+    content: quickRepliesContent
 }
 
 export const carouselMessage = {

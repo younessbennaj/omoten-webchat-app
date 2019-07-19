@@ -9,7 +9,24 @@ import { messages } from '../message-list/MessageList.stories';
 
 const Messenger = () => {
 
-    const { messages: conversation, setMessages, bind } = useMessages(messages);
+    const { messages: conversation, setMessages, bind, input: { content: text }, resetInput } = useMessages(messages);
+
+    useEffect(() => {
+        async function textQueryResult() {
+            const data = { text, userId: '1827367493' };
+            const response = await axios.post('https://dae75b5c.ngrok.io/api/df_text_query', data);
+            const replies = response.data.fulfillmentMessages.map((response) => {
+                return payloadReducer(response.payload);
+            });
+            const newMessages = [...conversation];
+            newMessages.push({ isUser: false, replies });
+            setMessages(newMessages);
+        }
+        if (text) {
+            textQueryResult();
+            resetInput();
+        }
+    })
 
     return (
         <div style={{ height: "100%" }}>
@@ -25,20 +42,48 @@ const Messenger = () => {
     );
 }
 
-const df_text_query_result = async ({ content }) => {
-    console.log(content);
-}
+const payloadReducer = payload => {
+
+    let result = {};
+
+    for (let key in payload.fields) {
+        if (payload.fields[key].stringValue) {
+            result[key] = payload.fields[key].stringValue;
+        } else {
+            result[key] = payload.fields.content.listValue.values.map((item) => {
+                let content = {};
+                for (let key in item.structValue.fields) {
+                    if (item.structValue.fields[key].stringValue) {
+                        content[key] = item.structValue.fields[key].stringValue;
+                    } else {
+                        content[key] = this.payloadReducer(item.structValue.fields[key]);
+                    }
+                }
+                return content;
+            });
+        }
+
+    }
+
+    return result;
+
+};
 
 const useMessages = (conversation) => {
     const [messages, setMessages] = useState(conversation);
+    const [input, setInput] = useState('');
 
     return {
         messages,
         setMessages,
+        input,
+        resetInput: () => {
+            setInput('');
+        },
         bind: {
             onMessageSubmit: message => {
-                df_text_query_result(message);
                 const newMessages = [...messages];
+                setInput(message);
                 newMessages.push({ isUser: true, replies: [message] });
                 setMessages(newMessages);
             }

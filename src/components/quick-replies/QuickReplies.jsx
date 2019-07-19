@@ -5,11 +5,11 @@ import QuickReply from './QuickReply';
 import QuickReplyContent from './QuickReplyContent';
 
 
-const QuickReplies = ({ quickReplies }) => {
+const QuickReplies = ({ content }) => {
     return (
         <QuickRepliesContainer>
             <QuickRepliesList className="d-flex justify-content-end">
-                {quickReplies.map((quickReply, i) => {
+                {content.map((quickReply, i) => {
                     return (
                         <QuickReply key={i}>
                             <QuickReplyContent key={i}>
