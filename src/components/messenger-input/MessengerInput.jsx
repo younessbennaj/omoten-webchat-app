@@ -8,7 +8,7 @@ const InputWrapper = styled.div`
 const MessengerInput = ({ onMessageSubmit }) => {
 
     const { value: content, reset: resetContent, bind: bindContent } = useInput('');
-    const { value: type, reset: resetType, bind: bindType } = useInput('text');
+    const { value: type, bind: bindType } = useInput('text');
 
     const handleMessageSubmit = e => {
         e.preventDefault();

@@ -11,7 +11,7 @@ const MessageWraper = styled.div`
 const MessageItem = ({ item: { type, content, isUser } }) => {
     let component;
     if (type === 'text') component = <Bubble content={content}></Bubble>;
-    if (type === "quickReplies") component = <QuickReplies quickReplies={content}></QuickReplies>;
+    if (type === "quickReplies") component = <QuickReplies content={content}></QuickReplies>;
     if (type === "carousel") component = <Carousel carousel={content}></Carousel>;
 
     return (

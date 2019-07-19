@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import QuickReplies from './QuickReplies';
 
-export const quickReplies = [
+export const quickRepliesContent = [
     {
         title: 'Choice 1',
         value: "BUTTON_VALUE"
@@ -25,4 +25,4 @@ export const quickReplies = [
 //To define our stories, we call add() once for each of our test states to generate a story.
 
 storiesOf('QuickReplies', module)
-    .add('Multiple option', () => <QuickReplies quickReplies={quickReplies}></QuickReplies>)
+    .add('Multiple option', () => <QuickReplies content={quickRepliesContent}></QuickReplies>)
