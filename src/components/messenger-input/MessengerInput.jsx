@@ -7,11 +7,11 @@ const InputWrapper = styled.div`
 `;
 const MessengerInput = () => {
 
-    const { value, reset, bind } = useInput('');
+    const { value: message, reset, bind } = useInput('');
 
-    function handleMessageSubmit(e) {
+    const handleMessageSubmit = e => {
         if (e.key === 'Enter') {
-            alert(value);
+            alert(message);
             reset();
         }
     }
