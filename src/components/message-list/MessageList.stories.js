@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { sampleMessage, userMessage } from '../message/Message.stories';
 import MessageList from './MessageList';
 
-const messages = [
+export const messages = [
     sampleMessage,
     userMessage
 ];

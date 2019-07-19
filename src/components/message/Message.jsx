@@ -2,29 +2,24 @@ import React from 'react';
 import MessageItem from '../message-item/MessageItem';
 import styled, { ThemeProvider } from 'styled-components';
 import { botTheme, userTheme } from '../../theme';
-
-
-const Avatar = styled.img`
-        padding: 6px;
-        height: 30px;
-        width: 30px;
-    `;
+import Avatar from '../avatar/Avatar';
 
 const InfoLine = styled.div`
     margin: 0 12px;
     flex: 0 1 auto;
     font-size: 12px;
 `;
+
 const MessageContainer = styled.div`
 `;
 
 const MessageGroupe = styled.div`
     padding-bottom: 8px
-`
+`;
+
 const MessageGroupeContainer = styled.div`
     padding: 8px 0; 
-`
-
+`;
 
 const Message = ({ message: { replies, isUser } }) => {
     // const botTheme = {
@@ -41,14 +36,14 @@ const Message = ({ message: { replies, isUser } }) => {
             <MessageGroupeContainer>
                 <MessageGroupe className={`d-flex ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
                     <div className="d-flex align-items-end mr-2">
-                        <Avatar className="rounded-circle shadow-sm ml-2" src="https://api.adorable.io/avatars/46/abott@adorable.png" />
+                        <Avatar size="30px" />
                     </div>
                     <MessageContainer className="d-flex flex-column">
                         {!isUser &&
                             <InfoLine className="d-flex">
                                 <div>
                                     Hotel Digital Assistant
-                            </div>
+                                </div>
                             </InfoLine>
                         }
                         <div>
