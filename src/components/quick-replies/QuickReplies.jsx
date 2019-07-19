@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import QuickRepliesContainer from './QuickRepliesContainer';
 import QuickRepliesList from './QuickRepliesList';
 import QuickReply from './QuickReply';
@@ -13,7 +12,7 @@ const QuickReplies = ({ quickReplies }) => {
                 {quickReplies.map((quickReply, i) => {
                     return (
                         <QuickReply key={i}>
-                            <QuickReplyContent>
+                            <QuickReplyContent key={i}>
                                 {quickReply.title}
                             </QuickReplyContent>
                         </QuickReply>

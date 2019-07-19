@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import BubbleContainer from './BubbleContainer';
 
@@ -8,9 +8,9 @@ const Paragraph = styled.p`
     font-size: 16px;
 `;
 
-const Bubble = ({ bubble: { content, isUser } }) => {
+const Bubble = ({ content }) => {
     return (
-        <BubbleContainer isUser={isUser} className="shadow-sm d-inline-block">
+        <BubbleContainer className="shadow-sm d-inline-block">
             <Paragraph>
                 {content}
             </Paragraph>

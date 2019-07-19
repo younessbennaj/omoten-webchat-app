@@ -51,6 +51,8 @@ const Message = ({ message: { replies, isUser } }) => {
                                 if (item.type !== 'quickReplies') {
                                     return <MessageItem key={i} item={item}></MessageItem>
                                 }
+
+                                return null;
                             })}
                         </div>
                     </MessageContainer>
@@ -60,6 +62,8 @@ const Message = ({ message: { replies, isUser } }) => {
                         if (item.type === 'quickReplies') {
                             return <MessageItem key={i} item={item}></MessageItem>
                         }
+
+                        return null;
                     })}
 
                 </div>

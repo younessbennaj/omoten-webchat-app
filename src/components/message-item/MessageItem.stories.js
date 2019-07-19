@@ -1,27 +1,19 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { botBubble, testBubble1, testBubble2 } from '../bubble/Bubble.stories';
+import { userContent, botContent } from '../bubble/Bubble.stories';
 import { quickReplies } from '../quick-replies/QuickReplies.stories';
 import { carousel } from '../carousel/Carousel.stories';
 import MessageItem from './MessageItem';
 
-export const textMessage = {
-    isUser: true,
+
+export const userMessageContent = {
     type: 'text',
-    content: botBubble
+    content: userContent
 }
 
-export const testMessage1 = {
-    isUser: true,
+export const botMessageContent = {
     type: 'text',
-    content: testBubble1
-}
-
-export const testMessage2 = {
-    isUser: true,
-    type: 'text',
-    content: testBubble2
+    content: botContent
 }
 
 export const quickRepliesMessage = {
@@ -37,6 +29,6 @@ export const carouselMessage = {
 }
 
 storiesOf('MessageItem', module)
-    .add('Text Message', () => <MessageItem item={textMessage}></MessageItem>)
+    .add('Text Message', () => <MessageItem item={botMessageContent}></MessageItem>)
     .add('Quick replies Message', () => <MessageItem item={quickRepliesMessage}></MessageItem>)
     .add('Carousel Message', () => <MessageItem item={carouselMessage}></MessageItem>)

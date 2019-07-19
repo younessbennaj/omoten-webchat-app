@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import defaultTheme from '../../theme';
 import Card from '../card/Card';
 import CarouselContainer from './CarouselContainer';
 import SliderContainer from './SliderContainer';
@@ -38,9 +36,9 @@ const QuickReplies = ({ carousel }) => {
                 </button>
             </Arrow>
             <CarouselContainer className="d-flex flex-row" currentIndex={currentIndex} items={carousel.length}>
-                {carousel.map(card => {
+                {carousel.map((card, i) => {
                     return (
-                        <Card card={card}></Card>
+                        <Card key={i} card={card}></Card>
                     )
                 })}
             </CarouselContainer>

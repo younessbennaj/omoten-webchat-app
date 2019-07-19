@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import defaultTheme from '../../theme';
 
 const QuickRepliesList = styled.ul`
     list-style-type: none;

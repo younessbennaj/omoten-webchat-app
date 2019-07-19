@@ -7,12 +7,4 @@ const BubbleContainer = styled.div`
     background: ${({ theme }) => theme.bubbleColor};
 `;
 
-// const BubbleContainer = styled.div`
-//     border-radius: 16px;
-
-//     padding: 8px 12px;
-//     color: ${props => (props.isUser ? props.theme.userFontColor : props.theme.botFontColor)};
-//     background: ${props => (props.isUser ? props.theme.userBubbleColor : props.theme.botBubbleColor)};
-// `;
-
 export default BubbleContainer;

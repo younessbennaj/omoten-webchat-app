@@ -16,10 +16,10 @@ const Card = ({ card: { title, text, image, buttons } }) => {
                 <p className="card-text">{text}</p>
             </div>
             <ul className="list-group list-group-flush">
-                {buttons.map(button => {
+                {buttons.map((button, i) => {
                     return (
-                        <li className="list-group-item text-center">
-                            <a href="#" className="text-center">{button.title}</a>
+                        <li key={i} className="list-group-item text-center">
+                            <a href={"www.google.com"} className="text-center">{button.title}</a>
                         </li>
                     )
                 })}
