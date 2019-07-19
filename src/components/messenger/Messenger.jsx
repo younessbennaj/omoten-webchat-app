@@ -3,14 +3,14 @@ import styled, { ThemeProvider } from 'styled-components';
 import MessageList from '../message-list/MessageList';
 import { headerTheme } from '../../theme';
 import MessengerHeader from '../messenger-header/MessengerHeader';
+import MessengerInput from '../messenger-input/MessengerInput';
 
 const MessengerContent = styled.div`
+    height: 100%;
 `;
 
-const Conversation = styled.div` 
-`;
-
-const MessengerInput = styled.div`
+const Conversation = styled.div`
+    height: 100%;
 `;
 
 const Messenger = ({ messages }) => {
