@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import MessageList from '../message-list/MessageList';
 import { headerTheme } from '../../theme';
 import { ThemeProvider } from 'styled-components';
@@ -24,6 +25,10 @@ const Messenger = () => {
     );
 }
 
+const df_text_query_result = async ({ content }) => {
+    console.log(content);
+}
+
 const useMessages = (conversation) => {
     const [messages, setMessages] = useState(conversation);
 
@@ -32,6 +37,7 @@ const useMessages = (conversation) => {
         setMessages,
         bind: {
             onMessageSubmit: message => {
+                df_text_query_result(message);
                 const newMessages = [...messages];
                 newMessages.push({ isUser: true, replies: [message] });
                 setMessages(newMessages);
