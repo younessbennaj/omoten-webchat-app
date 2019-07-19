@@ -1,31 +1,44 @@
-import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import React, { useState } from 'react';
 import MessageList from '../message-list/MessageList';
 import { headerTheme } from '../../theme';
+import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../messenger-header/MessengerHeader';
 import MessengerInput from '../messenger-input/MessengerInput';
 
-const MessengerContent = styled.div`
-    height: 100%;
-`;
-
-const Conversation = styled.div`
-    height: 100%;
-`;
-
 const Messenger = ({ messages }) => {
+
+    const { messages: conversation, setMessages, bind } = useMessages(messages);
+
     return (
-        <MessengerContent>
+        <div style={{ height: "100%" }}>
             <ThemeProvider theme={headerTheme}>
                 <MessengerHeader>
                 </MessengerHeader>
             </ThemeProvider>
-            <Conversation>
-                <MessageList messages={messages}></MessageList>
-                <MessengerInput></MessengerInput>
-            </Conversation>
-        </MessengerContent>
+            <div style={{ height: "100%" }}>
+                <MessageList messages={conversation}></MessageList>
+                <MessengerInput {...bind}></MessengerInput>
+            </div>
+        </div>
     );
+}
+
+const useMessages = (conversation) => {
+    const [messages, setMessages] = useState(conversation);
+
+    return {
+        messages,
+        setMessages,
+        bind: {
+            onMessageSubmit: message => {
+                const newMessages = [...messages];
+                newMessages.push({ isUser: true, replies: [message] });
+                setMessages(newMessages);
+            }
+        }
+    }
+
+
 }
 
 export default Messenger;

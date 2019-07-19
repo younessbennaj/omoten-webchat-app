@@ -12,7 +12,7 @@ const QuickReplies = ({ quickReplies }) => {
                 {quickReplies.map((quickReply, i) => {
                     return (
                         <QuickReply key={i}>
-                            <QuickReplyContent>
+                            <QuickReplyContent key={i}>
                                 {quickReply.title}
                             </QuickReplyContent>
                         </QuickReply>

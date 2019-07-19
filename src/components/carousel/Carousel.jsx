@@ -36,9 +36,9 @@ const QuickReplies = ({ carousel }) => {
                 </button>
             </Arrow>
             <CarouselContainer className="d-flex flex-row" currentIndex={currentIndex} items={carousel.length}>
-                {carousel.map(card => {
+                {carousel.map((card, i) => {
                     return (
-                        <Card card={card}></Card>
+                        <Card key={i} card={card}></Card>
                     )
                 })}
             </CarouselContainer>

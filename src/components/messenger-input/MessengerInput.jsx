@@ -5,21 +5,24 @@ const InputWrapper = styled.div`
     box-shadow: 0 4px 23px 0 rgba(0,0,0,.15);
     padding: 10px;
 `;
-const MessengerInput = () => {
+const MessengerInput = ({ onMessageSubmit }) => {
 
-    const { value: message, reset, bind } = useInput('');
+    const { value: content, reset: resetContent, bind: bindContent } = useInput('');
+    const { value: type, reset: resetType, bind: bindType } = useInput('text');
 
     const handleMessageSubmit = e => {
-        if (e.key === 'Enter') {
-            alert(message);
-            reset();
-        }
+        e.preventDefault();
+        onMessageSubmit({ content, type });
+        resetContent();
     }
 
     return (
         <InputWrapper className="form-group">
-            <label style={{ color: '#9A9A9A' }}>Reply to Hotel Digital Assistant</label>
-            <input type="text" className="form-control" {...bind} onKeyPress={handleMessageSubmit}></input>
+            <form onSubmit={handleMessageSubmit}>
+                <label style={{ color: '#9A9A9A' }}>Reply to Hotel Digital Assistant</label>
+                <input type="text" className="form-control" {...bindContent}></input>
+                <input type="hidden" {...bindType}></input>
+            </form>
         </InputWrapper>
     );
 }

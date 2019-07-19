@@ -1,14 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { testMessage1, testMessage2 } from '../message-item/MessageItem.stories';
+import { userMessageContent, botMessageContent } from '../message-item/MessageItem.stories';
 import { quickRepliesMessage } from '../message-item/MessageItem.stories';
 import Message from '../message/Message';
 
-export const sampleMessage = {
+export const botMessage = {
     isUser: false,
     replies: [
-        testMessage1,
-        testMessage2,
+        botMessageContent,
         quickRepliesMessage
     ]
 };
@@ -16,9 +15,9 @@ export const sampleMessage = {
 export const userMessage = {
     isUser: true,
     replies: [
-        testMessage1
+        userMessageContent
     ]
 };
 
 storiesOf('Message', module)
-    .add('Sample Message', () => <Message message={sampleMessage}></Message>)
+    .add('Sample Message', () => <Message message={botMessage}></Message>)

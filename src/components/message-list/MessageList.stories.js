@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { sampleMessage, userMessage } from '../message/Message.stories';
+import { botMessage, userMessage } from '../message/Message.stories';
 import MessageList from './MessageList';
 
 export const messages = [
-    sampleMessage,
+    botMessage,
     userMessage
 ];
 
