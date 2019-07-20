@@ -9,7 +9,7 @@ import { messages } from '../message-list/MessageList.stories';
 
 const Messenger = () => {
 
-    const { messages: conversation, setMessages, bind, input: { content: text }, resetInput } = useMessages(messages);
+    const { messages: conversation, setMessages, bind, textQuery: { content: text }, resetTextQuery } = useMessages(messages);
 
     useEffect(() => {
         async function textQueryResult() {
@@ -24,7 +24,7 @@ const Messenger = () => {
         }
         if (text) {
             textQueryResult();
-            resetInput();
+            resetTextQuery();
         }
     })
 
@@ -71,19 +71,19 @@ const payloadReducer = payload => {
 
 const useMessages = (conversation) => {
     const [messages, setMessages] = useState(conversation);
-    const [input, setInput] = useState('');
+    const [textQuery, setTextQuery] = useState('');
 
     return {
         messages,
         setMessages,
-        input,
-        resetInput: () => {
-            setInput('');
+        textQuery,
+        resetTextQuery: () => {
+            setTextQuery('');
         },
         bind: {
             onMessageSubmit: message => {
                 const newMessages = [...messages];
-                setInput(message);
+                setTextQuery(message);
                 newMessages.push({ isUser: true, replies: [message] });
                 setMessages(newMessages);
             }
