@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
-import MessageList from '../message-list/MessageList';
+import MessageList from '../../components/message-list/MessageList';
 import { headerTheme } from '../../theme';
 import { ThemeProvider } from 'styled-components';
-import MessengerHeader from '../messenger-header/MessengerHeader';
-import MessengerInput from '../messenger-input/MessengerInput';
-import { messages } from '../message-list/MessageList.stories';
+import MessengerHeader from '../../components/messenger-header/MessengerHeader';
+import MessengerInput from '../../components/messenger-input/MessengerInput';
 
-const Messenger = () => {
+const Messenger = ({ messages }) => {
 
     const { messages: conversation, setMessages, bind, textQuery: { content: text }, resetTextQuery } = useMessages(messages);
 
     useEffect(() => {
-        async function textQueryResult() {
-            const data = { text, userId: '1827367493' };
-            const response = await axios.post('https://dae75b5c.ngrok.io/api/df_text_query', data);
-            const replies = response.data.fulfillmentMessages.map((response) => {
-                return payloadReducer(response.payload);
-            });
-            const newMessages = [...conversation];
-            newMessages.push({ isUser: false, replies });
-            setMessages(newMessages);
-        }
         if (text) {
-            textQueryResult();
-            resetTextQuery();
+            textQueryResult(text, conversation, setMessages).then((data) => {
+                resetTextQuery();
+                const newMessages = [...conversation];
+                newMessages.push({ isUser: false, replies: data });
+                setMessages(newMessages);
+            });
         }
     })
 
@@ -41,6 +35,18 @@ const Messenger = () => {
         </div>
     );
 }
+
+// Get reponse from text query request to dialogflow 
+
+const textQueryResult = async (text) => {
+    const data = { text, userId: '1827367493' };
+    const response = await axios.post('https://dae75b5c.ngrok.io/api/df_text_query', data);
+    const replies = response.data.fulfillmentMessages.map((response) => {
+        return payloadReducer(response.payload);
+    });
+    return replies;
+}
+// Parse payloads response from dialogflow and return a correct format 
 
 const payloadReducer = payload => {
 
@@ -69,6 +75,8 @@ const payloadReducer = payload => {
 
 };
 
+// React custom hook to handle the conversation state in function component
+
 const useMessages = (conversation) => {
     const [messages, setMessages] = useState(conversation);
     const [textQuery, setTextQuery] = useState('');
@@ -90,7 +98,12 @@ const useMessages = (conversation) => {
         }
     }
 
-
 }
 
-export default Messenger;
+//Va être appelé à chaque fois que le state change 
+function mapStateToProps(state) {
+    return {
+        messages: state.messages
+    }
+}
+export default connect(mapStateToProps)(Messenger);

@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Normalize } from 'styled-normalize';
 import { createGlobalStyle } from 'styled-components';
-import Messenger from './components/messenger/Messenger';
-// import { messages } from './components/message-list/MessageList.stories';
+import Messenger from './containers/messenger/Messenger';
+
 
 const GlobalStyles = createGlobalStyle`
  html {
