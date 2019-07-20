@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { addUserMessage } from '../../actions/messages';
+import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import MessageList from '../../components/message-list/MessageList';
 import { headerTheme } from '../../theme';
@@ -7,20 +9,24 @@ import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../../components/messenger-header/MessengerHeader';
 import MessengerInput from '../../components/messenger-input/MessengerInput';
 
-const Messenger = ({ messages }) => {
+const Messenger = ({ messages, addUserMessage }) => {
 
-    const { messages: conversation, setMessages, bind, textQuery: { content: text }, resetTextQuery } = useMessages(messages);
+    // const { messages: conversation, setMessages, bind, textQuery: { content: text }, resetTextQuery } = useMessages(messages);
 
-    useEffect(() => {
-        if (text) {
-            textQueryResult(text, conversation, setMessages).then((data) => {
-                resetTextQuery();
-                const newMessages = [...conversation];
-                newMessages.push({ isUser: false, replies: data });
-                setMessages(newMessages);
-            });
-        }
-    })
+    // useEffect(() => {
+    //     if (text) {
+    //         textQueryResult(text, conversation, setMessages).then((data) => {
+    //             resetTextQuery();
+    //             const newMessages = [...conversation];
+    //             newMessages.push({ isUser: false, replies: data });
+    //             setMessages(newMessages);
+    //         });
+    //     }
+    // })
+
+    const onMessageSubmit = (message) => {
+        addUserMessage(message);
+    }
 
     return (
         <div style={{ height: "100%" }}>
@@ -29,8 +35,8 @@ const Messenger = ({ messages }) => {
                 </MessengerHeader>
             </ThemeProvider>
             <div style={{ height: "100%" }}>
-                <MessageList messages={conversation}></MessageList>
-                <MessengerInput {...bind}></MessengerInput>
+                <MessageList messages={messages}></MessageList>
+                <MessengerInput onMessageSubmit={onMessageSubmit}></MessengerInput>
             </div>
         </div>
     );
@@ -77,33 +83,38 @@ const payloadReducer = payload => {
 
 // React custom hook to handle the conversation state in function component
 
-const useMessages = (conversation) => {
-    const [messages, setMessages] = useState(conversation);
-    const [textQuery, setTextQuery] = useState('');
+// const useMessages = (conversation) => {
+//     const [messages, setMessages] = useState(conversation);
+//     const [textQuery, setTextQuery] = useState('');
 
-    return {
-        messages,
-        setMessages,
-        textQuery,
-        resetTextQuery: () => {
-            setTextQuery('');
-        },
-        bind: {
-            onMessageSubmit: message => {
-                const newMessages = [...messages];
-                setTextQuery(message);
-                newMessages.push({ isUser: true, replies: [message] });
-                setMessages(newMessages);
-            }
-        }
-    }
+//     return {
+//         messages,
+//         setMessages,
+//         textQuery,
+//         resetTextQuery: () => {
+//             setTextQuery('');
+//         },
+//         bind: {
+//             onMessageSubmit: message => {
+//                 props.addUserMessage(message);
+//                 // const newMessages = [...messages];
+//                 // setTextQuery(message);
+//                 // newMessages.push({ isUser: true, replies: [message] });
+//                 // setMessages(newMessages);
+//             }
+//         }
+//     }
 
-}
+// }
 
 //Va être appelé à chaque fois que le state change 
 function mapStateToProps(state) {
-    return {
-        messages: state.messages
-    }
+    const { messages } = state;
+    return { messages };
 }
-export default connect(mapStateToProps)(Messenger);
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ addUserMessage }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messenger);

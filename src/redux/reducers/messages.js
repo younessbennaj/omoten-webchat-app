@@ -1,7 +1,21 @@
-export default function () {
+import { ADD_USER_MESSAGE } from "../../actions/actionTypes";
+
+export default function (state, { payload, type }) {
+    switch (type) {
+        case ADD_USER_MESSAGE: {
+            const message = {
+                isUser: true,
+                replies: [payload.message],
+                id: `message-${Math.random()}`
+            }
+            return ([...state, ...[message]]);
+        }
+    }
+
     return [
         {
             isUser: false,
+            id: `message-${Math.random()}`,
             replies: [
                 {
                     type: 'text',
@@ -25,6 +39,7 @@ export default function () {
         },
         {
             isUser: true,
+            id: `message-${Math.random()}`,
             replies: [
                 {
                     type: 'text',

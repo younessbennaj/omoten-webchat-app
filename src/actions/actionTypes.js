@@ -1,0 +1,1 @@
+export const ADD_USER_MESSAGE = 'ADD_USER_MESSAGE';
