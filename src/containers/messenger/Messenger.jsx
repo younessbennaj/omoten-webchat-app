@@ -11,8 +11,6 @@ import MessengerInput from '../../components/messenger-input/MessengerInput';
 
 const Messenger = ({ messages, addUserMessage }) => {
 
-    // const { messages: conversation, setMessages, bind, textQuery: { content: text }, resetTextQuery } = useMessages(messages);
-
     // useEffect(() => {
     //     if (text) {
     //         textQueryResult(text, conversation, setMessages).then((data) => {
@@ -24,10 +22,6 @@ const Messenger = ({ messages, addUserMessage }) => {
     //     }
     // })
 
-    const onMessageSubmit = (message) => {
-        addUserMessage(message);
-    }
-
     return (
         <div style={{ height: "100%" }}>
             <ThemeProvider theme={headerTheme}>
@@ -36,7 +30,7 @@ const Messenger = ({ messages, addUserMessage }) => {
             </ThemeProvider>
             <div style={{ height: "100%" }}>
                 <MessageList messages={messages}></MessageList>
-                <MessengerInput onMessageSubmit={onMessageSubmit}></MessengerInput>
+                <MessengerInput addUserMessage={addUserMessage}></MessengerInput>
             </div>
         </div>
     );
@@ -81,40 +75,12 @@ const payloadReducer = payload => {
 
 };
 
-// React custom hook to handle the conversation state in function component
-
-// const useMessages = (conversation) => {
-//     const [messages, setMessages] = useState(conversation);
-//     const [textQuery, setTextQuery] = useState('');
-
-//     return {
-//         messages,
-//         setMessages,
-//         textQuery,
-//         resetTextQuery: () => {
-//             setTextQuery('');
-//         },
-//         bind: {
-//             onMessageSubmit: message => {
-//                 props.addUserMessage(message);
-//                 // const newMessages = [...messages];
-//                 // setTextQuery(message);
-//                 // newMessages.push({ isUser: true, replies: [message] });
-//                 // setMessages(newMessages);
-//             }
-//         }
-//     }
-
-// }
-
 //Va être appelé à chaque fois que le state change 
 function mapStateToProps(state) {
     const { messages } = state;
     return { messages };
 }
 
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ addUserMessage }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Messenger);
+export default connect(mapStateToProps, {
+    addUserMessage
+})(Messenger);

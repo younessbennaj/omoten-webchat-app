@@ -4,7 +4,7 @@
 
 import { combineReducers } from 'redux';
 
-import messages from './messages';
+import { messages } from './messages';
 
 // On map le retour de notre reducer à une variable
 export default combineReducers({
