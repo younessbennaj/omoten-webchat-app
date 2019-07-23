@@ -11,7 +11,7 @@ export const messages = (state = [], { payload, type }) => {
             return ([...state, message]);
         }
         case FETCH_MESSAGES: {
-            console.log(payload);
+            return [...state, ...payload.messages];
         }
     }
 

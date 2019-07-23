@@ -1,4 +1,10 @@
 import { ADD_USER_MESSAGE, FETCH_MESSAGES } from './actionTypes';
+import axios from 'axios';
+
+// (async () => {
+//     const response = await axios.get('https://my-json-server.typicode.com/younessbennaj/messages-database/messages');
+//     console.log(response.data);
+// })();
 
 export const addUserMessage = (message) => {
     return {
@@ -9,11 +15,12 @@ export const addUserMessage = (message) => {
     }
 }
 
-export const fetchMessages = () => {
-    return {
+export const fetchMessages = () => async dispatch => {
+    const response = await axios.get('https://my-json-server.typicode.com/younessbennaj/messages-database/messages');
+    return dispatch({
         type: FETCH_MESSAGES,
         payload: {
-            messages: 'messages'
+            messages: response.data
         }
-    }
+    })
 }

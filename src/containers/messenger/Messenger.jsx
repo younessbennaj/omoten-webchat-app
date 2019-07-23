@@ -24,7 +24,7 @@ const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
 
     useEffect(() => {
         fetchMessages();
-    })
+    }, []);
 
     return (
         <div style={{ height: "100%" }}>
