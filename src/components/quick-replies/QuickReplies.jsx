@@ -4,6 +4,8 @@ import QuickRepliesList from './QuickRepliesList';
 import QuickReply from './QuickReply';
 import QuickReplyContent from './QuickReplyContent';
 
+//Ajouter un state qui permet d'afficher ou non la replies une fois cliqué
+//Ne pas ajouter les messages de type quick replies à la database
 
 const QuickReplies = ({ content }) => {
     const handleClick = (e) => {

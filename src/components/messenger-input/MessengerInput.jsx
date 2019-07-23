@@ -5,14 +5,14 @@ const InputWrapper = styled.div`
     box-shadow: 0 4px 23px 0 rgba(0,0,0,.15);
     padding: 10px;
 `;
-const MessengerInput = ({ onMessageSubmit }) => {
+const MessengerInput = ({ addUserMessage }) => {
 
     const { value: content, reset: resetContent, bind: bindContent } = useInput('');
     const { value: type, bind: bindType } = useInput('text');
 
     const handleMessageSubmit = e => {
         e.preventDefault();
-        onMessageSubmit({ content, type });
+        addUserMessage({ content, type });
         resetContent();
     }
 
