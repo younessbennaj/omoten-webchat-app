@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addUserMessage } from '../../actions/messages';
+import { addUserMessage, fetchMessages } from '../../actions/messages';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import MessageList from '../../components/message-list/MessageList';
@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../../components/messenger-header/MessengerHeader';
 import MessengerInput from '../../components/messenger-input/MessengerInput';
 
-const Messenger = ({ messages, addUserMessage }) => {
+const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
 
     // useEffect(() => {
     //     if (text) {
@@ -21,6 +21,10 @@ const Messenger = ({ messages, addUserMessage }) => {
     //         });
     //     }
     // })
+
+    useEffect(() => {
+        fetchMessages();
+    })
 
     return (
         <div style={{ height: "100%" }}>
@@ -82,5 +86,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    addUserMessage
+    addUserMessage,
+    fetchMessages
 })(Messenger);

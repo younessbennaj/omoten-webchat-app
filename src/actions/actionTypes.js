@@ -1,1 +1,2 @@
 export const ADD_USER_MESSAGE = 'ADD_USER_MESSAGE';
+export const FETCH_MESSAGES = 'FETCH_MESSAGES';
