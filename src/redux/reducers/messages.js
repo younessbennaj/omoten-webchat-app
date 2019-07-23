@@ -1,4 +1,4 @@
-import { ADD_USER_MESSAGE } from "../../actions/actionTypes";
+import { ADD_USER_MESSAGE, FETCH_MESSAGES } from "../../actions/actionTypes";
 
 export const messages = (state = [], { payload, type }) => {
     switch (type) {
@@ -9,6 +9,9 @@ export const messages = (state = [], { payload, type }) => {
                 id: `message-${Math.random()}`
             }
             return ([...state, message]);
+        }
+        case FETCH_MESSAGES: {
+            return [...state, ...payload.messages];
         }
     }
 
