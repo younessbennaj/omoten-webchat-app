@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import Bubble from '../UI/Bubble/Bubble';
 import QuickReplies from '../QuickReplies/QuickReplies';
 import Carousel from '../carousel/Carousel';
-
-const MessageWraper = styled.div`
-    margin-bottom: 2px;
-`;
+import Box from '../UI/Box';
 
 const MessageItem = ({ item: { type, content, isUser } }) => {
     let component;
@@ -15,9 +12,9 @@ const MessageItem = ({ item: { type, content, isUser } }) => {
     if (type === "carousel") component = <Carousel carousel={content}></Carousel>;
 
     return (
-        <MessageWraper>
+        <Box mb={1}>
             {component}
-        </MessageWraper>
+        </Box>
     );
 }
 
