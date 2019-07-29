@@ -74,7 +74,7 @@ export const theme = {
         bold: 600
     },
     borders: [0, '1px solid transparent'],
-    radii: ['0', '2px', '4px', '8px', '16px'],
+    radii: ['0', '2px', '4px', '8px', '16px', '24px'],
     fontSizes: [
         12,
         14,

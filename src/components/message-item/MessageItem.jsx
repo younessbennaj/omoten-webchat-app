@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Bubble from '../bubble/Bubble';
-import QuickReplies from '../quick-replies/QuickReplies';
+import Bubble from '../UI/Bubble/Bubble';
+import QuickReplies from '../QuickReplies/QuickReplies';
 import Carousel from '../carousel/Carousel';
 
 const MessageWraper = styled.div`
@@ -10,7 +10,7 @@ const MessageWraper = styled.div`
 
 const MessageItem = ({ item: { type, content, isUser } }) => {
     let component;
-    if (type === 'text') component = <Bubble content={content}></Bubble>;
+    if (type === 'text') component = <Bubble>{content}</Bubble>;
     if (type === "quickReplies") component = <QuickReplies content={content}></QuickReplies>;
     if (type === "carousel") component = <Carousel carousel={content}></Carousel>;
 
