@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { COMMON, LAYOUT, POSITION, BORDERS, TYPOGRAPHY, FLEX } from '../UI/utils/constants';
 import { flexbox } from 'styled-system';
 import Button from '../UI/Button';
+import Box from '../UI/Box';
 
-const StyledQuickReplies = styled.div`
-    ${COMMON}
-    ${flexbox}
-
+const StyledQuickReplies = styled(Box)`
     > ul {
         list-style-type: none;
         padding: 0 0px;
@@ -27,13 +25,24 @@ StyledQuickReplies.defaultProps = {
 };
 
 const QuickReplies = ({ content }) => {
+
+    const [displayQuickReplies, setdisplayQuickReplies] = useState(true);
+
+    useEffect(() => {
+        // Empty array as second argument
+    }, []);
+
+    const handleClick = () => {
+        setdisplayQuickReplies(false);
+    }
+
     return (
-        <StyledQuickReplies justifyContent='flex-end'>
+        <StyledQuickReplies display={displayQuickReplies ? 'flex' : 'none'} justifyContent='flex-end'>
             <ul>
                 {content.map((quickReply, i) => {
                     return (
                         <li>
-                            <Button.QuickReply>{quickReply.title}</Button.QuickReply>
+                            <Button.QuickReply onClick={handleClick}>{quickReply.title}</Button.QuickReply>
                         </li>
                     )
                 })}
