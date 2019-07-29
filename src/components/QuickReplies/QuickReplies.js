@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { COMMON, LAYOUT, POSITION, BORDERS, TYPOGRAPHY, FLEX } from '../UI/utils/constants';
 import { flexbox } from 'styled-system';
 import Button from '../UI/Button';
 import Box from '../UI/Box';
@@ -41,7 +40,7 @@ const QuickReplies = ({ content }) => {
             <ul>
                 {content.map((quickReply, i) => {
                     return (
-                        <li>
+                        <li key={i}>
                             <Button.QuickReply onClick={handleClick}>{quickReply.title}</Button.QuickReply>
                         </li>
                     )

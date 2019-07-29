@@ -10,6 +10,11 @@
 //     userFontColor: '#4a4a4a'
 // };
 
+export const widgetTheme = {
+    height: '520px',
+    width: '350px',
+}
+
 export const defaultTheme = {
     background: '#BDBDBD'
 }
@@ -92,5 +97,6 @@ export const theme = {
         formControlFocus: 'rgba(3, 102, 214, 0.3) 0px 0px 0px 0.2em'
     },
     space: [0, 4, 8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128],
-    colors
+    colors,
+    widgetTheme
 };

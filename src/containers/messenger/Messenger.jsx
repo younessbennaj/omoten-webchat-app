@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addUserMessage, fetchMessages } from '../../actions/messages';
-import { bindActionCreators } from 'redux';
 import axios from 'axios';
+import styled from 'styled-components';
 import MessageList from '../../components/message-list/MessageList';
 import { headerTheme } from '../../theme';
 import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../../components/messenger-header/MessengerHeader';
 import MessengerInput from '../../components/messenger-input/MessengerInput';
 
+const Content = styled.div`
+    height: 345px;
+    overflow: hidden;
+    overflow-y: scroll;
+`
+
 const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
+
+    let messagesEnd;
 
     // useEffect(() => {
     //     if (text) {
@@ -26,6 +34,12 @@ const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
         fetchMessages();
     }, []);
 
+    useEffect(() => {
+        console.log(messagesEnd);
+
+        messagesEnd.scrollIntoView({ behaviour: "smooth" });
+    }, [messages]);
+
     return (
         <div style={{ height: "100%" }}>
             <ThemeProvider theme={headerTheme}>
@@ -33,7 +47,11 @@ const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
                 </MessengerHeader>
             </ThemeProvider>
             <div style={{ height: "100%" }}>
-                <MessageList messages={messages}></MessageList>
+                <Content>
+                    <MessageList messages={messages}>
+                    </MessageList>
+                    <div ref={(element) => { messagesEnd = element; }}></div>
+                </Content>
                 <MessengerInput addUserMessage={addUserMessage}></MessengerInput>
             </div>
         </div>
