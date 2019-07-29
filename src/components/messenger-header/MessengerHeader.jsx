@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Avatar from '../avatar/Avatar';
+import Avatar from '../UI/Avatar';
 import { FaTimes } from "react-icons/fa";
+import Card from '../UI/Card';
+import Box from '../UI/Box';
 
 const ClosingButton = styled.button`
     margin-right: 22px;
@@ -16,26 +18,19 @@ const ClosingButton = styled.button`
     color: ${({ theme }) => theme.color};
 `;
 
-const HeaderWrapper = styled.div`
-    height: 60px;
-    color: ${({ theme }) => theme.color};
-    box-shadow: 0 15px 25px -13px rgba(0,0,0,.13);
-    padding: 0 .8rem;
-`;
-
 const MessengerHeader = () => {
     return (
-        <HeaderWrapper className="d-flex align-items-center justify-content-between">
-            <div className="d-flex align-items-center">
-                <Avatar size="33px" />
+        <Card display="flex" alignItems='center' justifyContent='space-between'>
+            <Box display="flex" alignItems='center'>
+                <Avatar size="medium" />
                 <div>
                     <div style={{ 'paddingLeft': '10px' }}>Hotel Digital Assistant</div>
                 </div>
-            </div>
+            </Box>
             <ClosingButton>
                 <FaTimes />
             </ClosingButton>
-        </HeaderWrapper>
+        </Card>
     );
 }
 

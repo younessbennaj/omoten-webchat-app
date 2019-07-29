@@ -1,14 +1,15 @@
 import React from 'react';
 import Message from '../message/Message';
+import Box from '../UI/Box';
 
 const MessageList = ({ messages }) => {
 
     return (
-        <div style={{ height: '100%' }}>
+        <Box>
             {messages.map((message, i) => {
                 return <Message key={i} message={message}></Message>
             })}
-        </div>
+        </Box>
     );
 }
 
