@@ -18,10 +18,6 @@ const StyledOutlineButton = styled(StyledSolidButton)`
         opacity: 0;
     }
 
-    &:active {
-        background: #fff;
-    }
-
     &:active::before {
         opacity: 0.1;
     }

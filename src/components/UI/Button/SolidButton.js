@@ -11,6 +11,10 @@ const StyledSolidButton = styled(Button)`
     transition: all 0.15s ease;
   }
 
+  &:focus {
+      outline: 0px;
+  }
+
   &:hover {
     text-decoration: inherit;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -18,11 +22,6 @@ const StyledSolidButton = styled(Button)`
 
   &:hover::before {
     opacity: 0.9;
-  }
-
-  &:active {
-    box-shadow: none;
-    background: #000;
   }
 
   &::before {

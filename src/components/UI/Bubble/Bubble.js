@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { COMMON, LAYOUT, POSITION, BORDERS, TYPOGRAPHY, get } from '../utils/constants';
 
-const StyledBubble = styled.div`  
+const StyledBubble = styled.div`
+    display: inline-block;
     ${COMMON}
     ${LAYOUT}
     ${POSITION}
@@ -12,8 +13,8 @@ const StyledBubble = styled.div`
 
 StyledBubble.defaultProps = {
     m: 0,
-    px: 4,
-    py: 2,
+    px: 3,
+    py: 3,
     color: 'black',
     bg: 'white',
     primaryColor: 'primary',

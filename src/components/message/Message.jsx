@@ -1,7 +1,7 @@
 import React from 'react';
 import MessageItem from '../message-item/MessageItem';
 import styled, { ThemeProvider } from 'styled-components';
-import { botTheme, userTheme } from '../../theme';
+// import { botTheme, userTheme } from '../../theme';
 import Avatar from '../avatar/Avatar';
 
 const InfoLine = styled.div`
@@ -32,43 +32,41 @@ const Message = ({ message: { replies, isUser } }) => {
     //     fontColor: '#4a4a4a'
     // };
     return (
-        <ThemeProvider theme={isUser ? userTheme : botTheme}>
-            <MessageGroupeContainer>
-                <MessageGroupe className={`d-flex ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <div className="d-flex align-items-end mr-2">
-                        <Avatar size="30px" />
-                    </div>
-                    <MessageContainer className="d-flex flex-column">
-                        {!isUser &&
-                            <InfoLine className="d-flex">
-                                <div>
-                                    Hotel Digital Assistant
-                                </div>
-                            </InfoLine>
-                        }
-                        <div>
-                            {replies.map((item, i) => {
-                                if (item.type !== 'quickReplies') {
-                                    return <MessageItem key={i} item={item}></MessageItem>
-                                }
-
-                                return null;
-                            })}
-                        </div>
-                    </MessageContainer>
-                </MessageGroupe>
-                <div>
-                    {replies.map((item, i) => {
-                        if (item.type === 'quickReplies') {
-                            return <MessageItem key={i} item={item}></MessageItem>
-                        }
-
-                        return null;
-                    })}
-
+        <MessageGroupeContainer>
+            <MessageGroupe className={`d-flex ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className="d-flex align-items-end mr-2">
+                    <Avatar size="30px" />
                 </div>
-            </MessageGroupeContainer>
-        </ThemeProvider>
+                <MessageContainer className="d-flex flex-column">
+                    {!isUser &&
+                        <InfoLine className="d-flex">
+                            <div>
+                                Hotel Digital Assistant
+                                </div>
+                        </InfoLine>
+                    }
+                    <div>
+                        {replies.map((item, i) => {
+                            if (item.type !== 'quickReplies') {
+                                return <MessageItem key={i} item={item}></MessageItem>
+                            }
+
+                            return null;
+                        })}
+                    </div>
+                </MessageContainer>
+            </MessageGroupe>
+            <div>
+                {replies.map((item, i) => {
+                    if (item.type === 'quickReplies') {
+                        return <MessageItem key={i} item={item}></MessageItem>
+                    }
+
+                    return null;
+                })}
+
+            </div>
+        </MessageGroupeContainer>
     )
 }
 
