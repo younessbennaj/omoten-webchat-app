@@ -61,7 +61,6 @@ const Button = React.forwardRef((props, ref) => {
 Button.defaultProps = {
     height: '3rem',
     minWidth: '3rem',
-    m: 0,
     px: 4,
     py: 0,
     fontWeight: 'bold',
