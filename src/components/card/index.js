@@ -8,6 +8,10 @@ const size = props => {
             return `
                 height: auto;
                 width: 240px;
+
+                > img {
+                    height: 130px;
+                }
         `;
         case 'small':
             return `
@@ -37,13 +41,11 @@ const CardContainer = styled(Card)`
 `;
 
 CardContainer.defaultProps = {
-    my: 5,
     p: 0
 }
 
 const CardItem = React.forwardRef(({ card: { title, text, image, buttons }, ...props }, ref) => (
     < CardContainer ref={ref} {...props}>
-        {console.log(props)}
         <Image
             width={1}
             src={image}
@@ -51,18 +53,18 @@ const CardItem = React.forwardRef(({ card: { title, text, image, buttons }, ...p
         />
 
         <Box px={4} py={3}>
-            <Heading.h2>{title}</Heading.h2>
-            <Heading.h5 color="#666">{text}</Heading.h5>
+            <Heading.h5>{title}</Heading.h5>
+            <Heading.h6 color="#666">{title}</Heading.h6>
         </Box>
 
         <Flex px={4} height="64px" borderTop={1} borderColor={"#E8E8E8"}>
-            {buttons.map(button => {
+            {/* {buttons.map(button => {
                 return (
                     <Button.Text p={"0"} mr={4} height={"auto"}>
                         {button.title}
                     </Button.Text>
                 )
-            })}
+            })} */}
         </Flex>
     </CardContainer >
 ));

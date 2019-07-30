@@ -45,10 +45,8 @@ const Carousel = ({ carousel }) => {
         });
     }
 
-    console.log()
-
     return (
-        <Box width={300} minHeight={460} overflow="hidden" position="relative">
+        <Box width={300} height={275} overflow="hidden" position="relative">
             <Arrow className='position-absolute' direction='left'>
                 <button onClick={previousIndex} className="btn btn-primary" disabled={currentIndex === 0}>
                     <FaArrowLeft />

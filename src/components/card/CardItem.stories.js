@@ -35,6 +35,19 @@ export const anotherCard = {
         ]
 }
 
+export const smallCard = {
+        title: 'Card Title',
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare hendrerit nulla vel sollicitudin. Sed neque quam, fermentum non ultricies quis, porttitor eget purus. Sed ut elementum lectus. Aenean elit enim, posuere eu urna et',
+        image: 'https://source.unsplash.com/random/1280x720',
+        buttons: [
+                {
+                        title: 'Button Title',
+                        type: 'Button Type',
+                        value: 'Button Value'
+                }
+        ]
+}
+
 // Technically, a story is a function that returns something that can be rendered to screen.
 
 // We first call the storiesOf() function to register the component.
@@ -45,4 +58,4 @@ storiesOf('Card Item', module)
         .add('One card', () => <CardItem card={card}></CardItem>)
         .add('Multiple buttons', () => <CardItem card={anotherCard}></CardItem>)
         .add('Small', () => <CardItem size="small" card={card}></CardItem>)
-        .add('XSmall', () => <CardItem size="x-small" card={card}></CardItem>)
+        .add('XSmall', () => <CardItem size="x-small" card={smallCard}></CardItem>)
