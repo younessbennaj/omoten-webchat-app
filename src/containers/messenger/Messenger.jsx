@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addUserMessage, fetchMessages } from '../../actions/messages';
+import { addUserMessage, fetchMessages, sendUserMessage } from '../../actions/messages';
 import axios from 'axios';
 import styled from 'styled-components';
 import MessageList from '../../components/message-list/MessageList';
@@ -15,7 +15,7 @@ const Content = styled.div`
     overflow-y: scroll;
 `
 
-const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
+const Messenger = ({ messages, addUserMessage, fetchMessages, sendUserMessage }) => {
 
     let messagesEnd;
 
@@ -35,8 +35,6 @@ const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
     }, []);
 
     useEffect(() => {
-        console.log(messagesEnd);
-
         messagesEnd.scrollIntoView({ behaviour: "smooth" });
     }, [messages]);
 
@@ -52,7 +50,7 @@ const Messenger = ({ messages, addUserMessage, fetchMessages }) => {
                     </MessageList>
                     <div ref={(element) => { messagesEnd = element; }}></div>
                 </Content>
-                <MessengerInput addUserMessage={addUserMessage}></MessengerInput>
+                <MessengerInput sendUserMessage={sendUserMessage} addUserMessage={addUserMessage}></MessengerInput>
             </div>
         </div>
     );
@@ -105,5 +103,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     addUserMessage,
-    fetchMessages
+    fetchMessages,
+    sendUserMessage
 })(Messenger);
