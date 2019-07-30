@@ -41,6 +41,8 @@ export const anotherCard = {
 
 //To define our stories, we call add() once for each of our test states to generate a story.
 
-storiesOf('Card', module)
+storiesOf('Card Item', module)
         .add('One card', () => <CardItem card={card}></CardItem>)
         .add('Multiple buttons', () => <CardItem card={anotherCard}></CardItem>)
+        .add('Small', () => <CardItem size="small" card={card}></CardItem>)
+        .add('XSmall', () => <CardItem size="x-small" card={card}></CardItem>)
