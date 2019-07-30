@@ -71,6 +71,9 @@ export const theme = {
         normal: 400,
         bold: 600
     },
+    heights: [0, 16, 32, 64, 128, 256],
+    minHeights: [0, 16, 32, 64, 128, 256],
+    maxHeights: [0, 16, 32, 64, 128, 256],
     borders: [0, '1px solid transparent'],
     radii: ['0', '2px', '4px', '8px', '16px', '24px'],
     fontSizes: [

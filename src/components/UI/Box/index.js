@@ -16,7 +16,7 @@ const StyledBox = styled.div`
 `;
 
 const Box = React.forwardRef((props, ref) => (
-    <StyledBox ref={ref} {...props} />
+  <StyledBox ref={ref} {...props} />
 ));
 
 Box.displayName = 'Box';
