@@ -48,12 +48,12 @@ const Carousel = ({ carousel }) => {
     return (
         <Box width={300} height={275} overflow="hidden" position="relative">
             <Arrow className='position-absolute' direction='left'>
-                <button onClick={previousIndex} className="btn btn-primary" disabled={currentIndex === 0}>
+                <button onClick={previousIndex} className="btn btn-primary" disabled={currentIndex === 0} style={{ backgroundColor: '#007bff30', border: 'none' }}>
                     <FaArrowLeft />
                 </button>
             </Arrow>
             <Arrow className='position-absolute' direction='right'>
-                <button onClick={nextIndex} className="btn btn-primary" disabled={currentIndex === (carousel.length - 1)}>
+                <button onClick={nextIndex} className="btn btn-primary" disabled={currentIndex === (carousel.length - 1)} style={{ backgroundColor: '#007bff30', border: 'none' }}>
                     <FaArrowRight />
                 </button>
             </Arrow>
