@@ -27,7 +27,7 @@ export const fetchMessages = () => async dispatch => {
 
 export const sendUserMessage = (message) => async dispatch => {
     const data = { text: message.content, userId: '1827367493' };
-    const response = await axios.post('https://ac0353ca.ngrok.io/api/df_text_query', data);
+    const response = await axios.post('https://55bcd947.ngrok.io/api/df_text_query', data);
     const replies = response.data.fulfillmentMessages.map((response) => {
         return payloadReducer(response.payload);
     });
