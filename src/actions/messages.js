@@ -31,6 +31,7 @@ export const sendUserMessage = (message) => async dispatch => {
     const replies = response.data.fulfillmentMessages.map((response) => {
         return payloadReducer(response.payload);
     });
+    console.log(replies);
     return dispatch({
         type: SEND_USER_MESSAGE,
         payload: {
@@ -40,7 +41,6 @@ export const sendUserMessage = (message) => async dispatch => {
 }
 
 const payloadReducer = payload => {
-
 
     let result = {};
 
@@ -54,7 +54,7 @@ const payloadReducer = payload => {
                     if (item.structValue.fields[key].stringValue) {
                         content[key] = item.structValue.fields[key].stringValue;
                     } else {
-                        content[key] = this.payloadReducer(item.structValue.fields[key]);
+                        content[key] = payloadReducer(item.structValue.fields[key]);
                     }
                 }
                 return content;

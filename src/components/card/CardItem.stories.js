@@ -1,13 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Card from './Card';
+import CardItem from './';
 
 
 export const card = {
         title: 'Card Title',
         text: 'a story is a function that returns something that can be rendered to screen',
-        image: 'https://placeimg.com/640/480/arch',
+        image: 'https://source.unsplash.com/random/1280x720',
         buttons: [
                 {
                         title: 'Button Title',
@@ -20,7 +20,7 @@ export const card = {
 export const anotherCard = {
         title: 'Card Title',
         text: 'a story is a function that returns something that can be rendered to screen',
-        image: 'https://placeimg.com/640/480/arch',
+        image: 'https://source.unsplash.com/random/1280x720',
         buttons: [
                 {
                         title: 'Button Title',
@@ -42,5 +42,5 @@ export const anotherCard = {
 //To define our stories, we call add() once for each of our test states to generate a story.
 
 storiesOf('Card', module)
-        .add('One card', () => <Card card={card}></Card>)
-        .add('Multiple buttons', () => <Card card={anotherCard}></Card>)
+        .add('One card', () => <CardItem card={card}></CardItem>)
+        .add('Multiple buttons', () => <CardItem card={anotherCard}></CardItem>)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import QuickReplies from './QuickReplies';
+import QuickReplies from './';
 
 export const quickRepliesContent = [
     {

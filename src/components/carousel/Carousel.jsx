@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Card from '../card/Card';
+import CardItem from '../card';
 import CarouselContainer from './CarouselContainer';
 import SliderContainer from './SliderContainer';
 import Arrow from './Arrow';
@@ -38,7 +38,7 @@ const QuickReplies = ({ carousel }) => {
             <CarouselContainer className="d-flex flex-row" currentIndex={currentIndex} items={carousel.length}>
                 {carousel.map((card, i) => {
                     return (
-                        <Card key={i} card={card}></Card>
+                        <CardItem key={i} card={card}></CardItem>
                     )
                 })}
             </CarouselContainer>
