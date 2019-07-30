@@ -25,7 +25,7 @@ StyledQuickReplies.defaultProps = {
     display: 'flex'
 };
 
-const QuickReplies = ({ content, messages, addUserMessage }) => {
+const QuickReplies = ({ content, messages, addUserMessage, sendUserMessage }) => {
 
     const [displayQuickReplies, setdisplayQuickReplies] = useState(true);
 
@@ -39,6 +39,7 @@ const QuickReplies = ({ content, messages, addUserMessage }) => {
             content: quickReply.value
         }
         addUserMessage(message);
+        sendUserMessage(message);
         setdisplayQuickReplies(false);
     }
 
