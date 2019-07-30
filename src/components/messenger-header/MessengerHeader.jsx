@@ -20,7 +20,7 @@ const ClosingButton = styled.button`
 
 const MessengerHeader = () => {
     return (
-        <Card display="flex" alignItems='center' justifyContent='space-between'>
+        <Card height={60} display="flex" alignItems='center' justifyContent='space-between'>
             <Box display="flex" alignItems='center'>
                 <Avatar size="medium" />
                 <div>

@@ -31,7 +31,6 @@ export const sendUserMessage = (message) => async dispatch => {
     const replies = response.data.fulfillmentMessages.map((response) => {
         return payloadReducer(response.payload);
     });
-    console.log(replies);
     return dispatch({
         type: SEND_USER_MESSAGE,
         payload: {
