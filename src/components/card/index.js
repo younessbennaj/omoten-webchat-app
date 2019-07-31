@@ -58,13 +58,13 @@ const CardItem = React.forwardRef(({ card: { title, text, image, buttons }, ...p
         </Box>
 
         <Flex px={4} height="64px" borderTop={1} borderColor={"#E8E8E8"}>
-            {/* {buttons.map(button => {
+            {buttons.map((button, i) => {
                 return (
-                    <Button.Text p={"0"} mr={4} height={"auto"}>
+                    <Button.Text key={i} p={"0"} mr={4} height={"auto"}>
                         {button.title}
                     </Button.Text>
                 )
-            })} */}
+            })}
         </Flex>
     </CardContainer >
 ));

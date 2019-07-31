@@ -28,9 +28,12 @@ export const fetchMessages = () => async dispatch => {
 export const sendUserMessage = (message) => async dispatch => {
     const data = { text: message.content, userId: '1827367493' };
     const response = await axios.post('https://55bcd947.ngrok.io/api/df_text_query', data);
+    console.log(response.data.fulfillmentMessages);
     const replies = response.data.fulfillmentMessages.map((response) => {
-        return payloadReducer(response.payload);
+        return payloadParser(response);
     });
+    // console.log(replies);
+
     return dispatch({
         type: SEND_USER_MESSAGE,
         payload: {
@@ -39,29 +42,55 @@ export const sendUserMessage = (message) => async dispatch => {
     })
 }
 
-const payloadReducer = payload => {
-
+const payloadParser = (response) => {
     let result = {};
-
-    for (let key in payload.fields) {
-        if (payload.fields[key].stringValue) {
-            result[key] = payload.fields[key].stringValue;
+    let { fields: messageProps } = response.payload;
+    for (let key in messageProps) {
+        if (messageProps[key].stringValue) {
+            //Si c'est une simple string 
+            result[key] = messageProps[key].stringValue;
         } else {
-            result[key] = payload.fields.content.listValue.values.map((item) => {
-                let content = {};
-                for (let key in item.structValue.fields) {
-                    if (item.structValue.fields[key].stringValue) {
-                        content[key] = item.structValue.fields[key].stringValue;
-                    } else {
-                        content[key] = payloadReducer(item.structValue.fields[key]);
-                    }
-                }
-                return content;
-            });
-        }
+            //Si c'est un objet ou un tableau... 
 
+            //Cette fonction permet de parser la payload pour extraire les tableaux
+            //et objets imbriqués.
+            //Permet de traduire depuis la structure utilisé par DialogFlow.
+            const typeProp = (value) => {
+
+                //Si c'est un tableau alors...
+                if (value.listValue) {
+                    const array = value.listValue.values.map(item => {
+                        if (item.stringValue) {
+                            return item.stringValue;
+                        }
+                        //... Tant que ce n'est pas une string ... on recommence
+                        return typeProp(item);
+                    })
+                    //Retourne le tableau qui correspond au bon format
+                    return array;
+                }
+
+                //Si c'est un objet alors...
+                if (value.structValue) {
+                    let { fields: objectProps } = value.structValue;
+                    let object = {}
+                    for (let key in objectProps) {
+                        if (objectProps[key].stringValue) {
+                            object[key] = objectProps[key].stringValue;
+                        } else {
+                            //... Tant que ce n'est pas une string ... on recommence
+                            object[key] = typeProp(objectProps[key]);
+                        }
+                    }
+                    //Retourne l'objet qui correspond au bon format
+                    return object;
+                }
+
+            }
+
+            result[key] = typeProp(messageProps[key]);
+        }
     }
 
     return result;
-
-};
+}
