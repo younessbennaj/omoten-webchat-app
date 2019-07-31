@@ -10,9 +10,6 @@ const MessageItem = ({ item: { type, content, isUser } }) => {
     if (type === 'text') component = <Bubble>{content}</Bubble>;
     if (type === "quickReplies") component = <QuickReplies content={content}></QuickReplies>;
     if (type === "carousel") component = <Carousel carousel={content}></Carousel>;
-    if (type === "carousel") {
-        console.log(content);
-    }
 
     return (
         <Box mb={1}>
