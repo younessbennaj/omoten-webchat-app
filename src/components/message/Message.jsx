@@ -2,7 +2,7 @@ import React from 'react';
 import MessageItem from '../message-item/MessageItem';
 import styled, { ThemeProvider } from 'styled-components';
 import Avatar from '../UI/Avatar';
-import Box from '../UI/Box';
+import { Box, Flex } from '../UI';
 
 const InfoLine = styled.div`
     margin: 0 12px;
@@ -12,17 +12,23 @@ const InfoLine = styled.div`
 
 const Message = ({ message: { replies, isUser } }) => {
     return (
-        <Box my={2}>
-            <Box pb={2} display="flex" flexDirection={isUser ? 'row-reverse' : 'row'}>
-                <Box display="flex" alignItems='flex-end'>
-                    <Avatar size="small" />
-                </Box>
+        <Box pb='16px'>
+            {/* <Box display="flex" flexDirection={isUser ? 'row-reverse' : 'row'}>
+                {!isUser &&
+                    <Box
+                        position="absolute"
+                        left='0'
+                        bottom='10px'
+                    >
+                        <Avatar size="medium" />
+                    </Box>
+                }
                 <Box display="flex" flexDirection="column">
                     {!isUser &&
                         <InfoLine className="d-flex">
                             <div>
                                 Hotel Digital Assistant
-                                </div>
+                            </div>
                         </InfoLine>
                     }
                     <Box display="flex" flexDirection="column" alignItems='flex-end' alignItems={isUser ? 'flex-end' : 'flex-start'}>
@@ -35,11 +41,35 @@ const Message = ({ message: { replies, isUser } }) => {
                         })}
                     </Box>
                 </Box>
+            </Box> */}
+            <Box
+                position="relative"
+                paddingLeft="54px"
+            >
+                {!isUser &&
+                    <Box
+                        position="absolute"
+                        left='0'
+                        bottom='10px'
+                    >
+                        <Avatar size="medium" />
+                    </Box>
+                }
+
+                {replies.map((item, i) => {
+                    if (item.type !== 'quickReplies') {
+                        return <MessageItem isUser={isUser} key={i} item={item}></MessageItem>
+                    }
+
+                    return null;
+                })}
             </Box>
-            <Box>
+            <Box
+                position="relative"
+            >
                 {replies.map((item, i) => {
                     if (item.type === 'quickReplies') {
-                        return <MessageItem key={i} item={item}></MessageItem>
+                        return <MessageItem isUser={isUser} key={i} item={item}></MessageItem>
                     }
 
                     return null;

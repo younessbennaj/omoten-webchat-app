@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Box, Input } from '../UI';
 
-const InputWrapper = styled.div`
-    box-shadow: 0 4px 23px 0 rgba(0,0,0,.15);
-    padding: 10px;
-`;
+//Messenger Input Style 
+
+const MessengerInputContainer = styled(Box)({
+    position: 'absolute',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+    height: '48px'
+});
+
+const StyledInput = styled(Input)({
+    position: 'absolute',
+    bottom: '0px',
+    left: '0px',
+    width: '100%'
+})
+
 const MessengerInput = ({ addUserMessage, sendUserMessage }) => {
-
     const { value: content, reset: resetContent, bind: bindContent } = useInput('');
     const { value: type, bind: bindType } = useInput('text');
 
-    const handleMessageSubmit = e => {
+    const handleMessageSubmit = (e) => {
         e.preventDefault();
         addUserMessage({ content, type });
         sendUserMessage({ content, type });
@@ -18,15 +31,14 @@ const MessengerInput = ({ addUserMessage, sendUserMessage }) => {
     }
 
     return (
-        <InputWrapper>
+        <MessengerInputContainer>
             <form onSubmit={handleMessageSubmit}>
-                <label style={{ color: '#9A9A9A' }}>Reply to Hotel Digital Assistant</label>
-                <input placeholder="Répondre" type="text" className="form-control" {...bindContent}></input>
+                <StyledInput placeholder="Répondre" {...bindContent} />
                 <input type="hidden" {...bindType}></input>
             </form>
-        </InputWrapper>
-    );
-}
+        </MessengerInputContainer>
+    )
+};
 
 const useInput = initialValue => {
     const [value, setValue] = useState(initialValue);

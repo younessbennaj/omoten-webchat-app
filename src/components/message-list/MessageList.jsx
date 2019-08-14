@@ -1,10 +1,14 @@
 import React from 'react';
 import Message from '../message/Message';
-import Box from '../UI/Box';
 import styled from 'styled-components';
+import { Box } from '../UI'
 
 const StyledMessageList = styled(Box)`
 `
+
+StyledMessageList.defaultProps = {
+    width: '100%'
+}
 
 const MessageList = ({ messages }) => {
 
