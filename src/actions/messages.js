@@ -1,10 +1,5 @@
-import { ADD_USER_MESSAGE, FETCH_MESSAGES, SEND_USER_MESSAGE } from './actionTypes';
+import { ADD_USER_MESSAGE, FETCH_MESSAGES, SEND_USER_MESSAGE, ADD_WELCOME_MESSAGE } from './actionTypes';
 import axios from 'axios';
-
-// (async () => {
-//     const response = await axios.get('https://my-json-server.typicode.com/younessbennaj/messages-database/messages');
-//     console.log(response.data);
-// })();
 
 export const addUserMessage = (message) => {
     return {
@@ -13,6 +8,20 @@ export const addUserMessage = (message) => {
             message
         }
     }
+}
+
+export const addWelcomeMessage = () => async dispatch => {
+    const data = { event: 'Welcome' };
+    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_event_query', data);
+    const replies = response.data.fulfillmentMessages.map((response) => {
+        return payloadParser(response);
+    });
+    return dispatch({
+        type: ADD_WELCOME_MESSAGE,
+        payload: {
+            replies
+        }
+    });
 }
 
 export const fetchMessages = () => async dispatch => {
@@ -28,7 +37,6 @@ export const fetchMessages = () => async dispatch => {
 export const sendUserMessage = (message) => async dispatch => {
     const data = { text: message.content, userId: '1827367493' };
     const response = await axios.post('https://bba98cc7.ngrok.io/api/df_text_query', data);
-    console.log(response.data.fulfillmentMessages);
     const replies = response.data.fulfillmentMessages.map((response) => {
         return payloadParser(response);
     });
