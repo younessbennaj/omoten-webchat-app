@@ -7,7 +7,7 @@ import MessageList from '../../components/message-list/MessageList';
 import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../../components/messenger-header';
 // import MessengerInput from '../../components/messenger-input/MessengerInput';
-import { Box, Flex, Avatar, Heading, Text } from '../../components/UI';
+import { Box, Flex, Avatar, Heading, Text, Input } from '../../components/UI';
 
 //Messenger Container Style 
 
@@ -41,7 +41,7 @@ const MessageListContentContainer = styled(Flex)({
     position: 'absolute',
     top: '0',
     right: '0',
-    bottom: '0',
+    bottom: '48px',
     left: '0',
     overflowX: 'hidden',
     overflowY: 'scroll'
@@ -83,6 +83,23 @@ const Messenger = ({ messages, addUserMessage, fetchMessages, sendUserMessage })
                 <MessageListContent messages={messages}>
                 </MessageListContent>
             </MessageListContainer>
+            <Box>
+                <Box
+                    position='absolute'
+                    bottom='0px'
+                    left='0px'
+                    right='0px'
+                    height='200px'
+                >
+                    <Input
+                        position='absolute'
+                        bottom='0px'
+                        left='0px'
+                        width='100%'
+                    >
+                    </Input>
+                </Box>
+            </Box>
         </MessengerContainer>
     );
 }
