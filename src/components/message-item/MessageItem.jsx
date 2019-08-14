@@ -10,7 +10,6 @@ const MessageItem = ({ item: { type, content }, isUser }) => {
     if (type === 'text') component = <Bubble>{content}</Bubble>;
     if (type === "quickReplies") component = <QuickReplies content={content}></QuickReplies>;
     if (type === "carousel") component = <Carousel carousel={content}></Carousel>;
-    console.log(isUser);
     return (
         <Flex mb={1} justifyContent={isUser ? 'flex-end' : 'flex-start'}>
             {component}

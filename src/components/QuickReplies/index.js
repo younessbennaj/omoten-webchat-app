@@ -6,26 +6,12 @@ import { flexbox } from 'styled-system';
 import Button from '../UI/Button';
 import { Box } from '../UI';
 
-// const StyledQuickReplies = styled(Flex)`
-//     > ul {
-//         list-style-type: none;
-//         padding: 0 0px;
-//         margin: 2px 0 0 0;
-
-//         > li {
-//             display: inline-block;
-//             margin: 0px;
-//             margin-left: 5px;
-//         }
-//     }
-
-// `;
-
 const StyledQuickReplies = styled(Box)`
     text-align: right;
     position: absolute;
     right: 0;
     font-size: 13px;
+    padding-bottom: 15px;
 
     > button {
         margin: 3px;
@@ -54,15 +40,6 @@ const QuickReplies = ({ content, messages, addUserMessage, sendUserMessage }) =>
 
     return (
         <StyledQuickReplies display={displayQuickReplies ? 'inline-block' : 'none'}>
-            {/* <ul>
-                {content.map((quickReply, i) => {
-                    return (
-                        <li key={i}>
-                            <Button.QuickReply onClick={() => handleClick(quickReply)}>{quickReply.title}</Button.QuickReply>
-                        </li>
-                    )
-                })}
-            </ul> */}
             {content.map((quickReply, i) => {
                 return (
                     <Button.QuickReply key={i} onClick={() => handleClick(quickReply)}>{quickReply.title}</Button.QuickReply>

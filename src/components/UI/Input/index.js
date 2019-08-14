@@ -51,7 +51,7 @@ const defaultProps = {
 Input.defaultProps = defaultProps;
 StyledInput.defaultProps = defaultProps;
 
-Input.displayName = 'Input'
+Input.displayName = 'Input';
 
 export { StyledInput };
 
