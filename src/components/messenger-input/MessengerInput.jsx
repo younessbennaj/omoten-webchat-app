@@ -18,7 +18,7 @@ const MessengerInput = ({ addUserMessage, sendUserMessage }) => {
     }
 
     return (
-        <InputWrapper className="form-group">
+        <InputWrapper>
             <form onSubmit={handleMessageSubmit}>
                 <label style={{ color: '#9A9A9A' }}>Reply to Hotel Digital Assistant</label>
                 <input type="text" className="form-control" {...bindContent}></input>

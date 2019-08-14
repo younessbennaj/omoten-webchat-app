@@ -16,8 +16,9 @@ const size = props => {
         `;
         case 'large':
             return `
-          height: 40px;
-          width: 40px;
+          height: 60px;
+          width: 60px;
+          line-height: 60px;
         `;
         default:
             return ``;
@@ -26,14 +27,16 @@ const size = props => {
 
 const StyledAvatar = styled(Box)`
   & {
+    display: inline-block;
+    vertical-align: middle;
     position: relative;
     overflow: hidden;
     border-radius: 100%;
-    margin: 0px 6px;
+    margin: 0px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(${'https://api.adorable.io/avatars/46/abott@adorable.png'});
+    background-image: url(${'https://source.unsplash.com/rDEOVtE7vOs/60x60'});
   }
 
   ${size}

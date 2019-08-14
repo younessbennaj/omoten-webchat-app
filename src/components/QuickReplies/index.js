@@ -4,26 +4,35 @@ import { addUserMessage, sendUserMessage } from '../../actions/messages';
 import styled from 'styled-components';
 import { flexbox } from 'styled-system';
 import Button from '../UI/Button';
-import Box from '../UI/Box';
+import { Box } from '../UI';
+
+// const StyledQuickReplies = styled(Flex)`
+//     > ul {
+//         list-style-type: none;
+//         padding: 0 0px;
+//         margin: 2px 0 0 0;
+
+//         > li {
+//             display: inline-block;
+//             margin: 0px;
+//             margin-left: 5px;
+//         }
+//     }
+
+// `;
 
 const StyledQuickReplies = styled(Box)`
-    > ul {
-        list-style-type: none;
-        padding: 0 0px;
-        margin: 2px 0 0 0;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    font-size: 13px;
 
-        > li {
-            display: inline-block;
-            margin: 0px;
-            margin-left: 5px;
-        }
+    > button {
+        margin: 3px;
     }
-
 `;
 
-StyledQuickReplies.defaultProps = {
-    display: 'flex'
-};
+StyledQuickReplies.defaultProps = {};
 
 const QuickReplies = ({ content, messages, addUserMessage, sendUserMessage }) => {
 
@@ -44,8 +53,8 @@ const QuickReplies = ({ content, messages, addUserMessage, sendUserMessage }) =>
     }
 
     return (
-        <StyledQuickReplies display={displayQuickReplies ? 'flex' : 'none'} justifyContent='flex-end'>
-            <ul>
+        <StyledQuickReplies display={displayQuickReplies ? 'inline-block' : 'none'}>
+            {/* <ul>
                 {content.map((quickReply, i) => {
                     return (
                         <li key={i}>
@@ -53,7 +62,12 @@ const QuickReplies = ({ content, messages, addUserMessage, sendUserMessage }) =>
                         </li>
                     )
                 })}
-            </ul>
+            </ul> */}
+            {content.map((quickReply, i) => {
+                return (
+                    <Button.QuickReply key={i} onClick={() => handleClick(quickReply)}>{quickReply.title}</Button.QuickReply>
+                )
+            })}
         </StyledQuickReplies>
     );
 }

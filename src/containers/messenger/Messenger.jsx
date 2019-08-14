@@ -4,59 +4,90 @@ import { addUserMessage, fetchMessages, sendUserMessage } from '../../actions/me
 import axios from 'axios';
 import styled from 'styled-components';
 import MessageList from '../../components/message-list/MessageList';
-import { headerTheme } from '../../theme';
 import { ThemeProvider } from 'styled-components';
-import MessengerHeader from '../../components/messenger-header/MessengerHeader';
-import MessengerInput from '../../components/messenger-input/MessengerInput';
+import MessengerHeader from '../../components/messenger-header';
+// import MessengerInput from '../../components/messenger-input/MessengerInput';
+import { Box, Flex, Avatar, Heading, Text } from '../../components/UI';
 
-const Content = styled.div`
-    height: 345px;
-    overflow: hidden;
-    overflow-y: scroll;
-`
+//Messenger Container Style 
+
+const MessengerContainer = styled(Flex)({
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    bottom: '0',
+    left: '0',
+    overflow: 'hidden'
+})
+
+//Message List Container Style 
+
+const MessageListContainer = styled(Flex)({
+    position: 'relative',
+    flexGrow: '1',
+    flexShrink: '1'
+});
+
+MessageListContainer.defaultProps = {
+    bg: "white"
+};
+
+//Message List Content Style 
+
+const MessageListContentContainer = styled(Flex)({
+    flexDirection: 'column',
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    bottom: '0',
+    left: '0',
+    overflowX: 'hidden',
+    overflowY: 'scroll'
+});
+
+const MessageListContent = ({ messages }) => {
+    //Auto scroll to the end of the message list when a new message is added
+    let messagesEnd;
+    useEffect(() => {
+        messagesEnd.scrollIntoView({ behaviour: "smooth" });
+    }, [messages]);
+
+
+    return (
+        <MessageListContentContainer>
+            <Flex
+                p="24px"
+                pb="0"
+                flexFlow="row wrap"
+            >
+                <MessageList messages={messages}>
+                </MessageList>
+            </Flex>
+            <div ref={(element) => { messagesEnd = element; }}></div>
+        </MessageListContentContainer>
+    )
+}
 
 const Messenger = ({ messages, addUserMessage, fetchMessages, sendUserMessage }) => {
-
-    let messagesEnd;
-
-    // useEffect(() => {
-    //     if (text) {
-    //         textQueryResult(text, conversation, setMessages).then((data) => {
-    //             resetTextQuery();
-    //             const newMessages = [...conversation];
-    //             newMessages.push({ isUser: false, replies: data });
-    //             setMessages(newMessages);
-    //         });
-    //     }
-    // })
 
     useEffect(() => {
         fetchMessages();
     }, []);
 
-    useEffect(() => {
-        messagesEnd.scrollIntoView({ behaviour: "smooth" });
-    }, [messages]);
-
     return (
-        <div style={{ height: "100%" }}>
-            <ThemeProvider theme={headerTheme}>
-                <MessengerHeader>
-                </MessengerHeader>
-            </ThemeProvider>
-            <div style={{ height: "100%" }}>
-                <Content>
-                    <MessageList messages={messages}>
-                    </MessageList>
-                    <div ref={(element) => { messagesEnd = element; }}></div>
-                </Content>
-                <MessengerInput sendUserMessage={sendUserMessage} addUserMessage={addUserMessage}></MessengerInput>
-            </div>
-        </div>
+        <MessengerContainer>
+            <MessengerHeader />
+            <MessageListContainer>
+                <MessageListContent messages={messages}>
+                </MessageListContent>
+            </MessageListContainer>
+        </MessengerContainer>
     );
 }
 
-// Get reponse from text query request to dialogflow 
+// Get reponse from text query request to dialogflow
 
 const textQueryResult = async (text) => {
     const data = { text, userId: '1827367493' };
@@ -66,7 +97,7 @@ const textQueryResult = async (text) => {
     });
     return replies;
 }
-// Parse payloads response from dialogflow and return a correct format 
+// Parse payloads response from dialogflow and return a correct format
 
 const payloadReducer = payload => {
 
@@ -95,7 +126,7 @@ const payloadReducer = payload => {
 
 };
 
-//Va être appelé à chaque fois que le state change 
+//Va être appelé à chaque fois que le state change
 function mapStateToProps(state) {
     const { messages } = state;
     return { messages };

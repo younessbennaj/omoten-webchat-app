@@ -4,17 +4,24 @@ import { COMMON, LAYOUT, POSITION, BORDERS, TYPOGRAPHY, get } from '../utils/con
 
 const StyledBubble = styled.div`
     display: inline-block;
+    width: auto;
+    max-width: 75%;
     ${COMMON}
     ${LAYOUT}
     ${POSITION}
     ${BORDERS}
     ${TYPOGRAPHY}
+
+    > span.bubble-text {
+        font-size: 14px;
+    }
 `;
 
 StyledBubble.defaultProps = {
     m: 0,
     px: 3,
     py: 3,
+    position: 'relative',
     color: 'black',
     bg: 'white',
     primaryColor: 'primary',
