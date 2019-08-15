@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { addUserMessage, sendUserMessage } from '../../actions/messages';
+import { addUserMessage, sendTextQueryMessage, sendEventQueryMessage } from '../../actions/messages';
 import styled from 'styled-components';
 import { flexbox } from 'styled-system';
 import Button from '../UI/Button';
@@ -20,7 +20,7 @@ const StyledQuickReplies = styled(Box)`
 
 StyledQuickReplies.defaultProps = {};
 
-const QuickReplies = ({ content, messages, addUserMessage, sendUserMessage }) => {
+const QuickReplies = ({ content, messages, addUserMessage, sendTextQueryMessage, sendEventQueryMessage }) => {
 
     const [displayQuickReplies, setdisplayQuickReplies] = useState(true);
 
@@ -31,11 +31,23 @@ const QuickReplies = ({ content, messages, addUserMessage, sendUserMessage }) =>
     const handleClick = (quickReply) => {
         const message = {
             type: 'text',
-            content: quickReply.value
+            content: quickReply.title
         }
-        addUserMessage(message);
-        sendUserMessage(message);
-        setdisplayQuickReplies(false);
+        if (quickReply.type === 'event') {
+            // console.log(quickReply);
+            addUserMessage(message);
+            sendEventQueryMessage(quickReply.value)
+            setdisplayQuickReplies(false);
+        }
+
+        if (quickReply.type === 'text') {
+            addUserMessage(message);
+            sendTextQueryMessage(quickReply.value);
+            setdisplayQuickReplies(false);
+        }
+        // addUserMessage(message);
+        // sendUserMessage(message);
+        // setdisplayQuickReplies(false);
     }
 
     return (
@@ -57,5 +69,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     addUserMessage,
-    sendUserMessage
+    sendTextQueryMessage,
+    sendEventQueryMessage
 })(QuickReplies);
