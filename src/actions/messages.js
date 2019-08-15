@@ -1,4 +1,11 @@
-import { ADD_USER_MESSAGE, FETCH_MESSAGES, SEND_USER_MESSAGE, ADD_WELCOME_MESSAGE } from './actionTypes';
+import {
+    ADD_USER_MESSAGE,
+    FETCH_MESSAGES,
+    SEND_USER_MESSAGE,
+    ADD_WELCOME_MESSAGE,
+    SEND_EVENT_QUERY_MESSAGE
+} from './actionTypes';
+
 import axios from 'axios';
 
 export const addUserMessage = (message) => {
@@ -34,14 +41,29 @@ export const fetchMessages = () => async dispatch => {
     })
 }
 
-export const sendUserMessage = (message) => async dispatch => {
-    const data = { text: message.content, userId: '1827367493' };
-    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_text_query', data);
+export const sendEventQueryMessage = (event) => async dispatch => {
+    const data = { event };
+    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_event_query', data);
     const replies = response.data.fulfillmentMessages.map((response) => {
         return payloadParser(response);
     });
-    // console.log(replies);
+    return dispatch({
+        type: SEND_EVENT_QUERY_MESSAGE,
+        payload: {
+            replies
+        }
+    });
+}
 
+export const sendTextQueryMessage = (text) => async dispatch => {
+
+    console.log(text);
+    const data = { text, userId: '1827367493' };
+    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_text_query', data);
+    console.log(response.data.fulfillmentMessages);
+    const replies = response.data.fulfillmentMessages.map((response) => {
+        return payloadParser(response);
+    });
     return dispatch({
         type: SEND_USER_MESSAGE,
         payload: {
@@ -49,6 +71,22 @@ export const sendUserMessage = (message) => async dispatch => {
         }
     })
 }
+
+// export const sendUserMessage = (message) => async dispatch => {
+//     const data = { text: message.content, userId: '1827367493' };
+//     const response = await axios.post('https://bba98cc7.ngrok.io/api/df_text_query', data);
+//     const replies = response.data.fulfillmentMessages.map((response) => {
+//         return payloadParser(response);
+//     });
+//     // console.log(replies);
+
+//     return dispatch({
+//         type: SEND_USER_MESSAGE,
+//         payload: {
+//             replies
+//         }
+//     })
+// }
 
 const payloadParser = (response) => {
     let result = {};

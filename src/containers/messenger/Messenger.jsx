@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addUserMessage, fetchMessages, sendUserMessage, addWelcomeMessage } from '../../actions/messages';
+import { addUserMessage, fetchMessages, sendTextQueryMessage, addWelcomeMessage } from '../../actions/messages';
 import axios from 'axios';
 import styled from 'styled-components';
 import MessageList from '../../components/message-list/MessageList';
@@ -70,7 +70,7 @@ const MessageListContent = ({ messages }) => {
     )
 }
 
-const Messenger = ({ messages, addUserMessage, fetchMessages, sendUserMessage, addWelcomeMessage }) => {
+const Messenger = ({ messages, addUserMessage, fetchMessages, sendTextQueryMessage, addWelcomeMessage }) => {
 
     useEffect(() => {
         // fetchMessages();
@@ -84,7 +84,7 @@ const Messenger = ({ messages, addUserMessage, fetchMessages, sendUserMessage, a
                 <MessageListContent messages={messages}>
                 </MessageListContent>
             </MessageListContainer>
-            <MessengerInput addUserMessage={addUserMessage} sendUserMessage={sendUserMessage} />
+            <MessengerInput addUserMessage={addUserMessage} sendTextQueryMessage={sendTextQueryMessage} />
         </MessengerContainer>
     );
 }
@@ -97,6 +97,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     addUserMessage,
     fetchMessages,
-    sendUserMessage,
+    sendTextQueryMessage,
     addWelcomeMessage
 })(Messenger);

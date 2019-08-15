@@ -19,14 +19,14 @@ const StyledInput = styled(Input)({
     width: '100%'
 })
 
-const MessengerInput = ({ addUserMessage, sendUserMessage }) => {
+const MessengerInput = ({ addUserMessage, sendTextQueryMessage }) => {
     const { value: content, reset: resetContent, bind: bindContent } = useInput('');
     const { value: type, bind: bindType } = useInput('text');
 
     const handleMessageSubmit = (e) => {
         e.preventDefault();
         addUserMessage({ content, type });
-        sendUserMessage({ content, type });
+        sendTextQueryMessage(content);
         resetContent();
     }
 
