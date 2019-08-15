@@ -4,15 +4,12 @@ import { addUserMessage, sendTextQueryMessage, sendEventQueryMessage } from '../
 import styled from 'styled-components';
 import { flexbox } from 'styled-system';
 import Button from '../UI/Button';
-import { Box } from '../UI';
+import { Box, Flex } from '../UI';
 
-const StyledQuickReplies = styled(Box)`
+const StyledQuickReplies = styled(Flex)`
     text-align: right;
-    position: absolute;
-    right: 0;
     font-size: 13px;
-    padding-bottom: 15px;
-
+    justify-content: flex-end;
     > button {
         margin: 3px;
     }
@@ -51,7 +48,7 @@ const QuickReplies = ({ content, messages, addUserMessage, sendTextQueryMessage,
     }
 
     return (
-        <StyledQuickReplies display={displayQuickReplies ? 'inline-block' : 'none'}>
+        <StyledQuickReplies display={displayQuickReplies ? 'flex' : 'none'}>
             {content.map((quickReply, i) => {
                 return (
                     <Button.QuickReply key={i} onClick={() => handleClick(quickReply)}>{quickReply.title}</Button.QuickReply>

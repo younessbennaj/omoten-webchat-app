@@ -7,6 +7,7 @@ import MessageList from '../../components/message-list/MessageList';
 import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../../components/messenger-header';
 import MessengerInput from '../../components/MessengerInput';
+import QuickReplies from '../../components/QuickReplies';
 import { Box, Flex, Avatar, Heading, Text, Input } from '../../components/UI';
 
 //Messenger Container Style 
@@ -71,7 +72,15 @@ const MessageListContent = ({ messages }) => {
     )
 }
 
-const Messenger = ({ messages, addUserMessage, fetchMessages, sendTextQueryMessage, addWelcomeMessage }) => {
+const Messenger = ({
+    messages,
+    addUserMessage,
+    fetchMessages,
+    sendTextQueryMessage,
+    addWelcomeMessage
+}) => {
+
+    let content = [{ title: '1 night', type: 'text', value: 'Book a room for 1 night' }, { title: '2 nights', type: 'text', value: '2 nights' }, { title: '3 nights', type: 'text', value: '3 nights' }];
 
     useEffect(() => {
         // fetchMessages();
@@ -92,8 +101,8 @@ const Messenger = ({ messages, addUserMessage, fetchMessages, sendTextQueryMessa
                     </MessageListContent>
                 </MessageListContainer>
             </Box>
-            <Box p={3} bg='primary'>
-                <Text>Quick Replies</Text>
+            <Box p={3} bg='white'>
+                <QuickReplies content={content}></QuickReplies>
             </Box>
             <Box
                 position='relative'
