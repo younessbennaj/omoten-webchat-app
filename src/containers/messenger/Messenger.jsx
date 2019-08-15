@@ -26,6 +26,7 @@ const MessengerContainer = styled(Flex)({
 
 const MessageListContainer = styled(Flex)({
     position: 'relative',
+    height: '100%',
     flexGrow: '1',
     flexShrink: '1'
 });
@@ -41,7 +42,7 @@ const MessageListContentContainer = styled(Flex)({
     position: 'absolute',
     top: '0',
     right: '0',
-    bottom: '48px',
+    bottom: '2px',
     left: '0',
     overflowX: 'hidden',
     overflowY: 'scroll'
@@ -79,13 +80,31 @@ const Messenger = ({ messages, addUserMessage, fetchMessages, sendTextQueryMessa
 
     return (
         <MessengerContainer>
-            <MessengerHeader />
-            <MessageListContainer>
-                <MessageListContent messages={messages}>
-                </MessageListContent>
-            </MessageListContainer>
-            <MessengerInput addUserMessage={addUserMessage} sendTextQueryMessage={sendTextQueryMessage} />
-        </MessengerContainer>
+            <Box>
+                <MessengerHeader />
+            </Box>
+            <Box
+                position='relative'
+                height='100%'
+            >
+                <MessageListContainer>
+                    <MessageListContent messages={messages}>
+                    </MessageListContent>
+                </MessageListContainer>
+            </Box>
+            <Box p={3} bg='primary'>
+                <Text>Quick Replies</Text>
+            </Box>
+            <Box
+                position='relative'
+                height="auto"
+            >
+                <MessengerInput
+                    addUserMessage={addUserMessage}
+                    sendTextQueryMessage={sendTextQueryMessage}
+                />
+            </Box>
+        </MessengerContainer >
     );
 }
 

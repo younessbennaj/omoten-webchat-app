@@ -19,6 +19,10 @@ const MessengerInput = ({ addUserMessage, sendTextQueryMessage }) => {
 
     return (
         <InputWrapper>
+            <Box
+            >
+                Hello
+            </Box>
             <form onSubmit={handleMessageSubmit}>
                 <label style={{ color: '#9A9A9A' }}>Reply to Hotel Digital Assistant</label>
                 <input placeholder="Répondre" type="text" className="form-control" {...bindContent}></input>
