@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import MessageList from '../message-list/MessageList';
+import MessageList from '../MessageList';
 import QuickReplies from '../QuickReplies';
 import { Flex, Box } from '../UI';
 

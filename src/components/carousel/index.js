@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import CardItem from '../card';
+import CardItem from '../CardItem';
 import { Box } from '../UI';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
