@@ -64,8 +64,8 @@ const Message = ({ message: { replies, isUser } }) => {
                     return null;
                 })}
             </Box>
-            <Box
-                position="relative"
+            {/* <Box
+
             >
                 {replies.map((item, i) => {
                     if (item.type === 'quickReplies') {
@@ -75,7 +75,7 @@ const Message = ({ message: { replies, isUser } }) => {
                     return null;
                 })}
 
-            </Box>
+            </Box> */}
         </Box>
     )
 }

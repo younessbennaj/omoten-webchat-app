@@ -7,6 +7,7 @@ import MessageList from '../../components/message-list/MessageList';
 import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../../components/messenger-header';
 import MessengerInput from '../../components/MessengerInput';
+import QuickReplies from '../../components/QuickReplies';
 import { Box, Flex, Avatar, Heading, Text, Input } from '../../components/UI';
 
 //Messenger Container Style 
@@ -26,6 +27,7 @@ const MessengerContainer = styled(Flex)({
 
 const MessageListContainer = styled(Flex)({
     position: 'relative',
+    height: '100%',
     flexGrow: '1',
     flexShrink: '1'
 });
@@ -41,7 +43,7 @@ const MessageListContentContainer = styled(Flex)({
     position: 'absolute',
     top: '0',
     right: '0',
-    bottom: '48px',
+    bottom: '2px',
     left: '0',
     overflowX: 'hidden',
     overflowY: 'scroll'
@@ -70,28 +72,67 @@ const MessageListContent = ({ messages }) => {
     )
 }
 
-const Messenger = ({ messages, addUserMessage, fetchMessages, sendTextQueryMessage, addWelcomeMessage }) => {
+const Messenger = ({
+    messages,
+    quickReplies,
+    addUserMessage,
+    fetchMessages,
+    sendTextQueryMessage,
+    addWelcomeMessage,
+    addQuickReplies
+}) => {
+
+    // addQuickReplies(content);
+
+    // const [quickReply, setQuickReply] = useState([]);
 
     useEffect(() => {
-        // fetchMessages();
         addWelcomeMessage();
     }, []);
 
+    // useEffect(() => {
+    //     setQuickReply(quickReplies);
+    // }, [quickReplies]);
+
+    // useEffect(() => {
+    //     console.log(quickReply);
+    // }, [quickReply]);
+
     return (
         <MessengerContainer>
-            <MessengerHeader />
-            <MessageListContainer>
-                <MessageListContent messages={messages}>
-                </MessageListContent>
-            </MessageListContainer>
-            <MessengerInput addUserMessage={addUserMessage} sendTextQueryMessage={sendTextQueryMessage} />
-        </MessengerContainer>
+            <Box>
+                <MessengerHeader />
+            </Box>
+            <Box
+                position='relative'
+                height='100%'
+            >
+                <MessageListContainer>
+                    <MessageListContent messages={messages}>
+                    </MessageListContent>
+                </MessageListContainer>
+            </Box>
+            <Box p={3} bg='white'>
+                {quickReplies.map((quickReply, i) => {
+                    return <QuickReplies key={i} content={quickReply.content}></QuickReplies>
+                })}
+            </Box>
+            <Box
+                position='relative'
+                height="auto"
+            >
+                <MessengerInput
+                    addUserMessage={addUserMessage}
+                    sendTextQueryMessage={sendTextQueryMessage}
+                />
+            </Box>
+        </MessengerContainer >
     );
 }
 
 function mapStateToProps(state) {
-    const { messages } = state;
-    return { messages };
+    const { messages, quickReplies } = state;
+    return { messages, quickReplies };
 }
 
 export default connect(mapStateToProps, {

@@ -5,17 +5,17 @@ import { Box, Input } from '../UI';
 //Messenger Input Style 
 
 const MessengerInputContainer = styled(Box)({
-    position: 'absolute',
-    bottom: '0px',
-    left: '0px',
-    right: '0px',
-    height: '48px'
+    // position: 'absolute',
+    // bottom: '0px',
+    // left: '0px',
+    // right: '0px',
+    // height: '48px'
 });
 
 const StyledInput = styled(Input)({
-    position: 'absolute',
-    bottom: '0px',
-    left: '0px',
+    // position: 'absolute',
+    // bottom: '0px',
+    // left: '0px',
     width: '100%'
 })
 

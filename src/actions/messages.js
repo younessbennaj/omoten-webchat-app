@@ -3,10 +3,62 @@ import {
     FETCH_MESSAGES,
     SEND_USER_MESSAGE,
     ADD_WELCOME_MESSAGE,
-    SEND_EVENT_QUERY_MESSAGE
+    SEND_EVENT_QUERY_MESSAGE,
+    ADD_QUICK_REPLIES,
+    DELETE_QUICK_REPLIES
 } from './actionTypes';
 
 import axios from 'axios';
+
+export const sendMessage = (query) => async dispatch => {
+    let apiUrl = `https://bba98cc7.ngrok.io/api/df_${query.type}_query`;
+    let data = { userId: '1827367493' };
+    data[query.type] = query.value;
+
+    //We send our query and get response from dialogflow
+    const response = await axios.post(apiUrl, data);
+
+    //We parse the dialogflow response to obtain the correct format
+    const replies = response.data.fulfillmentMessages.map((response) => {
+        return payloadParser(response);
+    });
+
+    //We extract the quickReplies type message
+    let quickReplies = replies.filter(reply => {
+        return reply.type === "quickReplies";
+    });
+
+    console.log(replies);
+    console.log(quickReplies);
+
+}
+
+sendMessage({ type: 'text', value: 'I want to book a room' })();
+
+
+export const addWelcomeMessage = () => async dispatch => {
+    const data = { event: 'Welcome' };
+    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_event_query', data);
+    const replies = response.data.fulfillmentMessages.map((response) => {
+        return payloadParser(response);
+    });
+    let quickReplies = replies.filter(reply => {
+        return reply.type === "quickReplies";
+    });
+    // addQuickReplies(quickReplies);
+    dispatch({
+        type: ADD_WELCOME_MESSAGE,
+        payload: {
+            replies
+        }
+    });
+    dispatch({
+        type: ADD_QUICK_REPLIES,
+        payload: {
+            quickReplies
+        }
+    });
+}
 
 export const addUserMessage = (message) => {
     return {
@@ -17,18 +69,13 @@ export const addUserMessage = (message) => {
     }
 }
 
-export const addWelcomeMessage = () => async dispatch => {
-    const data = { event: 'Welcome' };
-    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_event_query', data);
-    const replies = response.data.fulfillmentMessages.map((response) => {
-        return payloadParser(response);
-    });
-    return dispatch({
-        type: ADD_WELCOME_MESSAGE,
+export const deleteQuickReplies = (arg) => {
+    return {
+        type: DELETE_QUICK_REPLIES,
         payload: {
-            replies
+            test: "test"
         }
-    });
+    }
 }
 
 export const fetchMessages = () => async dispatch => {
@@ -47,46 +94,49 @@ export const sendEventQueryMessage = (event) => async dispatch => {
     const replies = response.data.fulfillmentMessages.map((response) => {
         return payloadParser(response);
     });
-    return dispatch({
+    let quickReplies = replies.filter(reply => {
+        return reply.type === "quickReplies";
+    });
+    console.log(quickReplies);
+    dispatch({
         type: SEND_EVENT_QUERY_MESSAGE,
         payload: {
             replies
+        }
+    });
+    dispatch({
+        type: ADD_QUICK_REPLIES,
+        payload: {
+            quickReplies
         }
     });
 }
 
 export const sendTextQueryMessage = (text) => async dispatch => {
 
-    console.log(text);
     const data = { text, userId: '1827367493' };
     const response = await axios.post('https://bba98cc7.ngrok.io/api/df_text_query', data);
-    console.log(response.data.fulfillmentMessages);
     const replies = response.data.fulfillmentMessages.map((response) => {
         return payloadParser(response);
     });
-    return dispatch({
+    let quickReplies = replies.filter(reply => {
+        return reply.type === "quickReplies";
+    });
+    console.log(quickReplies);
+    dispatch({
         type: SEND_USER_MESSAGE,
         payload: {
             replies
         }
     })
+    dispatch({
+        type: ADD_QUICK_REPLIES,
+        payload: {
+            quickReplies
+        }
+    });
 }
 
-// export const sendUserMessage = (message) => async dispatch => {
-//     const data = { text: message.content, userId: '1827367493' };
-//     const response = await axios.post('https://bba98cc7.ngrok.io/api/df_text_query', data);
-//     const replies = response.data.fulfillmentMessages.map((response) => {
-//         return payloadParser(response);
-//     });
-//     // console.log(replies);
-
-//     return dispatch({
-//         type: SEND_USER_MESSAGE,
-//         payload: {
-//             replies
-//         }
-//     })
-// }
 
 const payloadParser = (response) => {
     let result = {};
