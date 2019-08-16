@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addUserMessage, fetchMessages, sendTextQueryMessage, addWelcomeMessage } from '../../actions/messages';
+import { addUserMessage, fetchMessages, sendMessage } from '../../actions/messages';
 import axios from 'axios';
 import styled from 'styled-components';
 import MessageList from '../../components/message-list/MessageList';
@@ -76,10 +76,8 @@ const Messenger = ({
     messages,
     quickReplies,
     addUserMessage,
-    fetchMessages,
-    sendTextQueryMessage,
-    addWelcomeMessage,
-    addQuickReplies
+    sendMessage,
+    fetchMessages
 }) => {
 
     // addQuickReplies(content);
@@ -87,16 +85,8 @@ const Messenger = ({
     // const [quickReply, setQuickReply] = useState([]);
 
     useEffect(() => {
-        addWelcomeMessage();
+        sendMessage({ type: 'event', value: 'Welcome' });
     }, []);
-
-    // useEffect(() => {
-    //     setQuickReply(quickReplies);
-    // }, [quickReplies]);
-
-    // useEffect(() => {
-    //     console.log(quickReply);
-    // }, [quickReply]);
 
     return (
         <MessengerContainer>
@@ -123,7 +113,7 @@ const Messenger = ({
             >
                 <MessengerInput
                     addUserMessage={addUserMessage}
-                    sendTextQueryMessage={sendTextQueryMessage}
+                    sendMessage={sendMessage}
                 />
             </Box>
         </MessengerContainer >
@@ -138,6 +128,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     addUserMessage,
     fetchMessages,
-    sendTextQueryMessage,
-    addWelcomeMessage
+    sendMessage
 })(Messenger);

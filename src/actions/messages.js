@@ -1,15 +1,24 @@
 import {
     ADD_USER_MESSAGE,
     FETCH_MESSAGES,
-    SEND_USER_MESSAGE,
-    ADD_WELCOME_MESSAGE,
-    SEND_EVENT_QUERY_MESSAGE,
     ADD_QUICK_REPLIES,
-    DELETE_QUICK_REPLIES
+    DELETE_QUICK_REPLIES,
+    ADD_BOT_MESSAGE
 } from './actionTypes';
 
 import axios from 'axios';
 
+//Ajouter le message de l'utilisateur 
+export const addUserMessage = (message) => {
+    return {
+        type: ADD_USER_MESSAGE,
+        payload: {
+            message
+        }
+    }
+}
+
+//Envoyer le message de l'utilisateur à notre bot puis recevoir la réponse
 export const sendMessage = (query) => async dispatch => {
     let apiUrl = `https://bba98cc7.ngrok.io/api/df_${query.type}_query`;
     let data = { userId: '1827367493' };
@@ -28,47 +37,23 @@ export const sendMessage = (query) => async dispatch => {
         return reply.type === "quickReplies";
     });
 
-    console.log(replies);
-    console.log(quickReplies);
-
-}
-
-sendMessage({ type: 'text', value: 'I want to book a room' })();
-
-
-export const addWelcomeMessage = () => async dispatch => {
-    const data = { event: 'Welcome' };
-    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_event_query', data);
-    const replies = response.data.fulfillmentMessages.map((response) => {
-        return payloadParser(response);
-    });
-    let quickReplies = replies.filter(reply => {
-        return reply.type === "quickReplies";
-    });
-    // addQuickReplies(quickReplies);
     dispatch({
-        type: ADD_WELCOME_MESSAGE,
+        type: ADD_BOT_MESSAGE,
         payload: {
             replies
         }
-    });
+    })
+
     dispatch({
         type: ADD_QUICK_REPLIES,
         payload: {
             quickReplies
         }
     });
+
 }
 
-export const addUserMessage = (message) => {
-    return {
-        type: ADD_USER_MESSAGE,
-        payload: {
-            message
-        }
-    }
-}
-
+//Supprimer les quickReplies proposé à l'utilisateur
 export const deleteQuickReplies = (arg) => {
     return {
         type: DELETE_QUICK_REPLIES,
@@ -78,6 +63,7 @@ export const deleteQuickReplies = (arg) => {
     }
 }
 
+//Récupérer le discussion depuis un historique (fictif pour le momment mais à étudier)
 export const fetchMessages = () => async dispatch => {
     const response = await axios.get('https://my-json-server.typicode.com/younessbennaj/messages-database/messages');
     return dispatch({
@@ -88,56 +74,8 @@ export const fetchMessages = () => async dispatch => {
     })
 }
 
-export const sendEventQueryMessage = (event) => async dispatch => {
-    const data = { event };
-    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_event_query', data);
-    const replies = response.data.fulfillmentMessages.map((response) => {
-        return payloadParser(response);
-    });
-    let quickReplies = replies.filter(reply => {
-        return reply.type === "quickReplies";
-    });
-    console.log(quickReplies);
-    dispatch({
-        type: SEND_EVENT_QUERY_MESSAGE,
-        payload: {
-            replies
-        }
-    });
-    dispatch({
-        type: ADD_QUICK_REPLIES,
-        payload: {
-            quickReplies
-        }
-    });
-}
-
-export const sendTextQueryMessage = (text) => async dispatch => {
-
-    const data = { text, userId: '1827367493' };
-    const response = await axios.post('https://bba98cc7.ngrok.io/api/df_text_query', data);
-    const replies = response.data.fulfillmentMessages.map((response) => {
-        return payloadParser(response);
-    });
-    let quickReplies = replies.filter(reply => {
-        return reply.type === "quickReplies";
-    });
-    console.log(quickReplies);
-    dispatch({
-        type: SEND_USER_MESSAGE,
-        payload: {
-            replies
-        }
-    })
-    dispatch({
-        type: ADD_QUICK_REPLIES,
-        payload: {
-            quickReplies
-        }
-    });
-}
-
-
+//Permet de parser la réponse obtenue depuis DialogFlow pour obtenir un format exploitable facilement
+//dans l'application (solution temporaire avant une solution backend plus aboutie).
 const payloadParser = (response) => {
     let result = {};
     let { fields: messageProps } = response.payload;

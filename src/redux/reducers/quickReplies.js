@@ -6,7 +6,6 @@ export const quickReplies = (state = [], { payload, type }) => {
             return [...payload.quickReplies];
         }
         case DELETE_QUICK_REPLIES: {
-            console.log('delete');
             return [];
         }
     }
