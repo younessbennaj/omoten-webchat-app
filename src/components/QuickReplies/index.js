@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addUserMessage, sendMessage, deleteQuickReplies } from '../../actions/messages';
 import styled from 'styled-components';
-import { flexbox } from 'styled-system';
 import Button from '../UI/Button';
-import { Box, Flex } from '../UI';
+import { Flex } from '../UI';
 
 const StyledQuickReplies = styled(Flex)`
     text-align: right;
@@ -18,8 +17,6 @@ const StyledQuickReplies = styled(Flex)`
 StyledQuickReplies.defaultProps = {};
 
 const QuickReplies = ({ content, messages, addUserMessage, sendMessage, deleteQuickReplies }) => {
-
-    const [displayQuickReplies, setdisplayQuickReplies] = useState(true);
 
     useEffect(() => {
         // Empty array as second argument
@@ -44,7 +41,7 @@ const QuickReplies = ({ content, messages, addUserMessage, sendMessage, deleteQu
     }
 
     return (
-        <StyledQuickReplies display={displayQuickReplies ? 'flex' : 'none'}>
+        <StyledQuickReplies>
             {content.map((quickReply, i) => {
                 return (
                     <Button.QuickReply key={i} onClick={() => handleClick(quickReply)}>{quickReply.title}</Button.QuickReply>

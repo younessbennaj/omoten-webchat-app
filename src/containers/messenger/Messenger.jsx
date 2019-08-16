@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addUserMessage, fetchMessages, sendMessage } from '../../actions/messages';
-import axios from 'axios';
 import styled from 'styled-components';
-import MessageList from '../../components/message-list/MessageList';
-import { ThemeProvider } from 'styled-components';
 import MessengerHeader from '../../components/MessengerHeader';
 import MessengerWindow from '../../components/MessengerWindow';
 import MessengerInput from '../../components/MessengerInput';
-import QuickReplies from '../../components/QuickReplies';
-import { Box, Flex, Avatar, Heading, Text, Input } from '../../components/UI';
+import { Box, Flex } from '../../components/UI';
 
 const MessengerContainer = styled(Flex)({
     flexDirection: 'column',

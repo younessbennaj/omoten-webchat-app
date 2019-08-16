@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button, { StyledButton, ButtonBody } from './Button';
+import Button, { ButtonBody } from './Button';
 
 const StyledSolidButton = styled(Button)`
 & {

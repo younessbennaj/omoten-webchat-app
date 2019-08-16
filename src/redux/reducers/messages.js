@@ -21,6 +21,8 @@ export const messages = (state = [], { payload, type }) => {
         case FETCH_MESSAGES: {
             return [...state, ...payload.messages];
         }
+        default:
+            break;
     }
 
     return state;

@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { color, bg } from 'styled-system';
 import { theme } from '../theme';
 
 export const resets = `

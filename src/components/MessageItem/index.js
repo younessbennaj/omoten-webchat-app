@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Bubble } from '../UI';
-import QuickReplies from '../QuickReplies';
 import Carousel from '../Carousel';
 import { Flex } from '../UI';
 

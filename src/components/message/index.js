@@ -1,14 +1,7 @@
 import React from 'react';
 import MessageItem from '../MessageItem';
-import styled, { ThemeProvider } from 'styled-components';
 import Avatar from '../UI/Avatar';
-import { Box, Flex } from '../UI';
-
-const InfoLine = styled.div`
-    margin: 0 12px;
-    flex: 0 1 auto;
-    font-size: 12px;
-`;
+import { Box } from '../UI';
 
 const Message = ({ message: { replies, isUser } }) => {
     return (

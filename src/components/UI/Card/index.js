@@ -1,6 +1,4 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { get } from '../utils/constants';
 import Box from '../Box';
 
 const Card = React.forwardRef((props, ref) => <Box ref={ref} {...props} />);

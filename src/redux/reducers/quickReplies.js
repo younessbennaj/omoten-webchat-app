@@ -8,6 +8,8 @@ export const quickReplies = (state = [], { payload, type }) => {
         case DELETE_QUICK_REPLIES: {
             return [];
         }
+        default:
+            break;
     }
 
     return state;
