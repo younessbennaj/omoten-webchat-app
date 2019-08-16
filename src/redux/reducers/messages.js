@@ -1,4 +1,4 @@
-import { ADD_USER_MESSAGE, FETCH_MESSAGES, SEND_USER_MESSAGE, ADD_WELCOME_MESSAGE, SEND_EVENT_QUERY_MESSAGE } from "../../actions/actionTypes";
+import { ADD_USER_MESSAGE, FETCH_MESSAGES, ADD_BOT_MESSAGE } from "../../actions/actionTypes";
 
 export const messages = (state = [], { payload, type }) => {
     switch (type) {
@@ -10,32 +10,16 @@ export const messages = (state = [], { payload, type }) => {
             }
             return ([...state, message]);
         }
+        case ADD_BOT_MESSAGE: {
+            const message = {
+                isUser: false,
+                replies: payload.replies,
+                id: `message-${Math.random()}`
+            }
+            return ([...state, message]);
+        }
         case FETCH_MESSAGES: {
             return [...state, ...payload.messages];
-        }
-        case SEND_USER_MESSAGE: {
-            const message = {
-                isUser: false,
-                replies: payload.replies,
-                id: `message-${Math.random()}`
-            }
-            return ([...state, message]);
-        }
-        case ADD_WELCOME_MESSAGE: {
-            const message = {
-                isUser: false,
-                replies: payload.replies,
-                id: `message-${Math.random()}`
-            }
-            return ([...state, message]);
-        }
-        case SEND_EVENT_QUERY_MESSAGE: {
-            const message = {
-                isUser: false,
-                replies: payload.replies,
-                id: `message-${Math.random()}`
-            }
-            return ([...state, message]);
         }
     }
 
