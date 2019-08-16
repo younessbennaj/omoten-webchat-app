@@ -5,7 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import MessageList from '../../components/message-list/MessageList';
 import { ThemeProvider } from 'styled-components';
-import MessengerHeader from '../../components/messenger-header';
+import MessengerHeader from '../../components/MessengerHeader';
 import MessengerWindow from '../../components/MessengerWindow';
 import MessengerInput from '../../components/MessengerInput';
 import QuickReplies from '../../components/QuickReplies';

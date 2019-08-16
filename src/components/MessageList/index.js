@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from '../message/Message';
+import Message from '../Message';
 import styled from 'styled-components';
 import { Box } from '../UI'
 
