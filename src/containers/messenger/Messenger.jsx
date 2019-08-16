@@ -74,18 +74,29 @@ const MessageListContent = ({ messages }) => {
 
 const Messenger = ({
     messages,
+    quickReplies,
     addUserMessage,
     fetchMessages,
     sendTextQueryMessage,
-    addWelcomeMessage
+    addWelcomeMessage,
+    addQuickReplies
 }) => {
 
-    let content = [{ title: '1 night', type: 'text', value: 'Book a room for 1 night' }, { title: '2 nights', type: 'text', value: '2 nights' }, { title: '3 nights', type: 'text', value: '3 nights' }];
+    // addQuickReplies(content);
+
+    // const [quickReply, setQuickReply] = useState([]);
 
     useEffect(() => {
-        // fetchMessages();
         addWelcomeMessage();
     }, []);
+
+    // useEffect(() => {
+    //     setQuickReply(quickReplies);
+    // }, [quickReplies]);
+
+    // useEffect(() => {
+    //     console.log(quickReply);
+    // }, [quickReply]);
 
     return (
         <MessengerContainer>
@@ -102,7 +113,9 @@ const Messenger = ({
                 </MessageListContainer>
             </Box>
             <Box p={3} bg='white'>
-                <QuickReplies content={content}></QuickReplies>
+                {quickReplies.map((quickReply, i) => {
+                    return <QuickReplies key={i} content={quickReply.content}></QuickReplies>
+                })}
             </Box>
             <Box
                 position='relative'
@@ -118,8 +131,8 @@ const Messenger = ({
 }
 
 function mapStateToProps(state) {
-    const { messages } = state;
-    return { messages };
+    const { messages, quickReplies } = state;
+    return { messages, quickReplies };
 }
 
 export default connect(mapStateToProps, {
