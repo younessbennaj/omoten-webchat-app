@@ -5,12 +5,12 @@ import CardItem from './';
 
 
 export const card = {
-        title: 'Card Title',
-        text: 'a story is a function that returns something that can be rendered to screen',
+        title: 'Chambre M Superieur',
+        text: "D’une superficie de  20-25 m² environ, les chambres M Supérieures sont équipées d'un lit queen ou de deux lits jumeaux, d'une salle de bain avec baignoire et douche (sous réserve de disponibilité), d’un minibar,  d'un handy phone et de deux smart TV avec accès illimité et gratuit à la VOD.",
         image: 'https://source.unsplash.com/random/1280x720',
         buttons: [
                 {
-                        title: 'Button Title',
+                        title: 'View Detail',
                         type: 'Button Type',
                         value: 'Button Value'
                 }
