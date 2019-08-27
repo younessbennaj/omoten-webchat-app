@@ -7,7 +7,6 @@ const defaultProps = {
     fontWeight: 3,
     lineHeight: 'condensed',
     m: 0,
-    p: 0,
 };
 
 // Heading

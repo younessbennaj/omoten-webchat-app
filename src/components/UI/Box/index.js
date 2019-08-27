@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { opacity } from 'styled-system';
-import { COMMON, LAYOUT, POSITION, FLEX, BORDERS } from '../utils/constants';
+import { COMMON, LAYOUT, POSITION, FLEX, BORDERS, TYPOGRAPHY } from '../utils/constants';
 
 const StyledBox = styled.div`
   & {
     box-sizing: border-box;
   }
   ${COMMON}
+  ${TYPOGRAPHY}
   ${LAYOUT}
   ${POSITION}
   ${FLEX}

@@ -5,12 +5,12 @@ import CardItem from './';
 
 
 export const card = {
-        title: 'Card Title',
-        text: 'a story is a function that returns something that can be rendered to screen',
+        title: 'Chambre M Superieur',
+        text: "With an area of  20-25 sqm, the M Superior rooms are equipped with a queen bed or twin bed, a bathroom including shower and bathtub (subject to availability) , a minibar,  a handy phone and a  smart TVs with free VOD film access.",
         image: 'https://source.unsplash.com/random/1280x720',
         buttons: [
                 {
-                        title: 'Button Title',
+                        title: 'View Detail',
                         type: 'Button Type',
                         value: 'Button Value'
                 }
