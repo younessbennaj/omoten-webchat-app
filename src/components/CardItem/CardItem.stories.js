@@ -6,7 +6,7 @@ import CardItem from './';
 
 export const card = {
         title: 'Chambre M Superieur',
-        text: "D’une superficie de  20-25 m² environ, les chambres M Supérieures sont équipées d'un lit queen ou de deux lits jumeaux, d'une salle de bain avec baignoire et douche (sous réserve de disponibilité), d’un minibar,  d'un handy phone et de deux smart TV avec accès illimité et gratuit à la VOD.",
+        text: "With an area of  20-25 sqm, the M Superior rooms are equipped with a queen bed or twin bed, a bathroom including shower and bathtub (subject to availability) , a minibar,  a handy phone and a  smart TVs with free VOD film access.",
         image: 'https://source.unsplash.com/random/1280x720',
         buttons: [
                 {
