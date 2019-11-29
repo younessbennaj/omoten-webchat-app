@@ -7,7 +7,7 @@ const Grid = styled(Box)`
 `
 
 Grid.defaultProps = {
-    display: 'grid'
+  display: 'grid'
 }
 
 export default Grid;

@@ -45,6 +45,10 @@ CardContainer.defaultProps = {
     p: 0
 }
 
+const handleClick = () => {
+    console.log('clicked');
+}
+
 const CardItem = React.forwardRef(({ card: { title, text, image, buttons }, ...props }, ref) => (
     < CardContainer ref={ref} {...props}>
         <Image
@@ -96,7 +100,7 @@ const CardItem = React.forwardRef(({ card: { title, text, image, buttons }, ...p
                 </Text>
                 182$<span style={{ fontSize: '16px', fontWeight: '400' }}>/night</span>
             </Text>
-            <Button >
+            <Button onClick={handleClick}>
                 Show Rates
             </Button>
             {/* {buttons.map((button, i) => {

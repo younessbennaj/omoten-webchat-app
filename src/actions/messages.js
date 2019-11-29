@@ -20,7 +20,7 @@ export const addUserMessage = (message) => {
 
 //Envoyer le message de l'utilisateur à notre bot puis recevoir la réponse
 export const sendMessage = (query) => async dispatch => {
-    let apiUrl = `https://bba98cc7.ngrok.io/api/df_${query.type}_query`;
+    let apiUrl = `https://69fca11d.ngrok.io/api/df_${query.type}_query`;
     let data = { userId: '1827367493' };
     data[query.type] = query.value;
 
